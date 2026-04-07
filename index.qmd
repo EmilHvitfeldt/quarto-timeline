@@ -1,10 +1,12 @@
 ---
+filters:
+  - timeline
 format:
-  revealjs: 
+  revealjs:
     theme: [default, styles.scss]
     width: 1280
     height: 720
-    include-after-body: 
+    include-after-body:
       - "all-the-js-code.html"
 pagetitle: Title of Talk
 echo: false
