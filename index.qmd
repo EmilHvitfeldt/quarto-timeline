@@ -13,9 +13,64 @@ echo: false
 code-line-numbers: false
 ---
 
-## Timeline
+## Horizontal
 
 ::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical
+
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical Right
+
+::: {.timeline .vertical-right}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical Alternating
+
+::: {.timeline .vertical-alt}
 ::: {.event data-label="2020"}
 **Project Started**
 Initial concept and planning phase.
