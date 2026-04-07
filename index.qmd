@@ -1,0 +1,33 @@
+---
+format:
+  revealjs: 
+    theme: [default, styles.scss]
+    width: 1280
+    height: 720
+    include-after-body: 
+      - "all-the-js-code.html"
+pagetitle: Title of Talk
+echo: false
+code-line-numbers: false
+---
+
+## Timeline
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
