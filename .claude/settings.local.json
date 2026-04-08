@@ -9,7 +9,8 @@
       "Bash(curl:*)",
       "WebFetch(domain:codepen.io)",
       "Bash(unzip -o timeline-css.zip -d timeline-css)",
-      "Bash(unzip -o timeline-custom-counter-with-gradient-border.zip -d timeline-gradient)"
+      "Bash(unzip -o timeline-custom-counter-with-gradient-border.zip -d timeline-gradient)",
+      "Bash(quarto render:*)"
     ]
   }
 }

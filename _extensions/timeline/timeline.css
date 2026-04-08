@@ -306,10 +306,14 @@
 /* ============================================================
    SNAKE LAYOUT (alternating serpentine path)
 
-   Events alternate right/left, connected by a snaking border.
-   Odd events have a right border; even events have a left
-   border. border-top links each event to the previous one.
-   Rounded corners create the visual snake-path turn.
+   Each non-last event has a border-bottom (the horizontal
+   connecting segment). Odd events add border-right; even events
+   add border-left. border-bottom-right/left-radius creates clean
+   U-turns because both meeting borders are on the same element.
+
+   Padding (not margin) provides the visual offset so that
+   border-bottom always spans the full container width — no
+   double lines and no tapering at curve ends.
    ============================================================ */
 .timeline.snake {
   flex-direction: column;
@@ -325,31 +329,22 @@
 
 .timeline.snake .event {
   flex: none;
-  border-top: var(--tl-line-width) solid var(--tl-color-line);
   padding: 30px;
   text-align: left;
 }
 
+.timeline.snake .event:not(:last-child) {
+  border-bottom: var(--tl-line-width) solid var(--tl-color-line);
+}
+
 .timeline.snake .event:nth-child(odd) {
   border-right: var(--tl-line-width) solid var(--tl-color-line);
-  border-top-right-radius: var(--tl-snake-radius);
   border-bottom-right-radius: var(--tl-snake-radius);
-  margin-left: 30px;
-  padding-left: 0;
 }
 
 .timeline.snake .event:nth-child(even) {
   border-left: var(--tl-line-width) solid var(--tl-color-line);
-  border-top-left-radius: var(--tl-snake-radius);
   border-bottom-left-radius: var(--tl-snake-radius);
-  margin-right: 30px;
-  padding-right: 0;
-}
-
-.timeline.snake .event:first-child {
-  border-top: 0;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
 }
 
 .timeline.snake .event:last-child {
@@ -357,7 +352,7 @@
   border-bottom-left-radius: 0;
 }
 
-/* Label: floated above the turn corner */
+/* Label: above the entry point of the side border */
 .timeline.snake .event::before {
   position: absolute;
   white-space: nowrap;
@@ -377,16 +372,9 @@
   transform: translateY(-100%);
 }
 
-/* First event has no top border — label sits inside at top */
-.timeline.snake .event:first-child::before {
-  right: 4px;
-  left: auto;
-  transform: none;
-}
-
-/* Dot: centered at the turn corner */
+/* Dot: centered on the top edge of the side border */
 .timeline.snake .event::after {
-  top: calc(-1 * var(--tl-dot-size) / 2 - var(--tl-line-width) / 2);
+  top: calc(-1 * var(--tl-dot-size) / 2);
   left: auto;
   transform: none;
 }
@@ -400,7 +388,7 @@
   right: auto;
 }
 
-/* Suppress snake borders/margins on inner grouped events */
+/* Suppress snake borders on inner grouped events */
 .timeline.snake .tl-group .event {
   border: none;
   border-radius: 0;
