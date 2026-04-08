@@ -1,0 +1,306 @@
+---
+title: "quarto-timeline"
+subtitle: "Styled timelines for Quarto"
+toc: true
+toc-depth: 2
+filters:
+  - timeline
+---
+
+## Installation
+
+```bash
+quarto add EmilHvitfeldt/quarto-timeline
+```
+
+Then add the filter to your document YAML:
+
+```yaml
+filters:
+  - timeline
+```
+
+## Basic Usage
+
+Timelines are written as nested divs. The outer `.timeline` div sets the layout; each inner `.event` div is one entry, with a `data-label` attribute for the marker label.
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+:::
+```
+
+## Layouts
+
+The layout is controlled by a modifier class on `.timeline`. The default (no class) is `.horizontal`.
+
+### Horizontal
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+```
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+### Vertical
+
+```markdown
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+...
+:::
+```
+
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+### Vertical Right
+
+```markdown
+::: {.timeline .vertical-right}
+...
+:::
+```
+
+::: {.timeline .vertical-right}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+### Vertical Alternating
+
+```markdown
+::: {.timeline .vertical-alt}
+...
+:::
+```
+
+::: {.timeline .vertical-alt}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Grouped Events
+
+Multiple events sharing the same `data-label` are automatically grouped under a single marker by the extension.
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+:::
+```
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2022"}
+**Partnership**
+Signed deal with enterprise partner.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Fragment Behavior
+
+Fragment support is revealjs-only. Add `.fragment` to individual `.event` divs to reveal them one at a time. In other HTML formats, all events display statically.
+
+```markdown
+::: timeline
+::: {.event .fragment data-label="2020"}
+**Project Started**
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+:::
+:::
+```
+
+For timelines with more events than fit on a slide, two pan modes are available as classes on `.timeline`:
+
+| Class | Behavior |
+|---|---|
+| `.fragment-slide` | Centers the active event in the viewport as each fragment appears |
+| `.fragment-conveyor` | Steps left/down only when events would be clipped by the slide edge |
+
+Pan modes work with all four layout variants.
+
+### fragment-slide
+
+```markdown
+::: {.timeline .horizontal .fragment-slide}
+::: {.event .fragment data-label="2020"}
+...
+:::
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-slide.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+### fragment-conveyor
+
+```markdown
+::: {.timeline .horizontal .fragment-conveyor}
+::: {.event .fragment data-label="2020"}
+...
+:::
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-conveyor.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+### Vertical pan
+
+```markdown
+::: {.timeline .vertical .fragment-conveyor}
+...
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-vertical.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+## Customization
+
+All visual properties are exposed as CSS custom properties on `.timeline`, so you can override them per-document, per-slide, or per-timeline.
+
+| Property | Default | Controls |
+|---|---|---|
+| `--tl-color-line` | `#222222` | Timeline line color |
+| `--tl-color-dot` | `#222222` | Dot border/fill color |
+| `--tl-color-dot-bg` | `#ffffff` | Dot background color |
+| `--tl-color-label` | `#222222` | Label text color |
+| `--tl-color-content` | `currentColor` | Event content text color |
+| `--tl-dot-size` | `14px` | Dot diameter |
+| `--tl-line-width` | `3px` | Line thickness |
+| `--tl-label-size` | `0.8em` | Label font size |
+| `--tl-content-size` | `1em` | Content font size |
+| `--tl-gap` | `2rem` | Space between events |
+| `--tl-event-width` | `320px` | Fixed event width in pan modes |
+
+Override inline on a single timeline:
+
+```markdown
+::: {.timeline .vertical style="--tl-color-dot: #e74c3c; --tl-gap: 3rem;"}
+...
+:::
+```
+
+Or document-wide in a `styles.scss`:
+
+```scss
+.timeline {
+  --tl-color-dot: #e74c3c;
+}
+```

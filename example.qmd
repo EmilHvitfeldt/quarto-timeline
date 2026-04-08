@@ -3,7 +3,7 @@ filters:
   - timeline
 format:
   revealjs:
-    theme: [default, styles.scss]
+    theme: default
     width: 1280
     height: 720
 pagetitle: Title of Talk
