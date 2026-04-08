@@ -262,23 +262,42 @@
 /* ============================================================
    FRAGMENT PAN MODES (.fragment-slide, .fragment-conveyor)
 
-   The timeline expands to max-content width so all events lay
-   out naturally beyond the viewport. JS applies translateX to
-   pan the strip; CSS provides the transition.
+   JS applies translateX (horizontal) or translateY (vertical)
+   to pan the timeline strip. CSS provides the transition and
+   expands the timeline beyond the viewport on the pan axis.
 
-   Events in pan modes get a fixed width so panning feels uniform.
+   Horizontal: width: max-content; events get a fixed width.
+   Vertical:   height: max-content; events keep natural height.
    ============================================================ */
+
+/* Shared */
 .timeline.fragment-slide,
 .timeline.fragment-conveyor {
-  width: max-content;
-  min-width: 100%;
   transition: transform 0.5s ease;
   overflow: visible;
 }
 
-.timeline.fragment-slide .event,
-.timeline.fragment-conveyor .event {
+/* Horizontal pan (default layout and .horizontal) */
+.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt),
+.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt) {
+  width: max-content;
+  min-width: 100%;
+}
+
+.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt) .event,
+.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt) .event {
   flex: 0 0 var(--tl-event-width);
+}
+
+/* Vertical pan (.vertical, .vertical-right, .vertical-alt) */
+.timeline.vertical.fragment-slide,
+.timeline.vertical.fragment-conveyor,
+.timeline.vertical-right.fragment-slide,
+.timeline.vertical-right.fragment-conveyor,
+.timeline.vertical-alt.fragment-slide,
+.timeline.vertical-alt.fragment-conveyor {
+  height: max-content;
+  min-height: 100%;
 }
 
 

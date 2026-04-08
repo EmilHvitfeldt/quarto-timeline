@@ -227,3 +227,153 @@ Reached 1 million users worldwide.
 Expanded to 50 countries.
 :::
 :::
+
+##
+
+::: {.timeline .vertical .fragment-slide}
+::: {.event .fragment data-label="2019"}
+**Idea Born** — Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global** — Expanded to 50 countries.
+:::
+:::
+
+##
+
+::: {.timeline .vertical-right .fragment-slide}
+::: {.event .fragment data-label="2019"}
+**Idea Born** — Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global** — Expanded to 50 countries.
+:::
+:::
+
+##
+
+::: {.timeline .vertical-alt .fragment-slide}
+::: {.event .fragment data-label="2019"}
+**Idea Born**
+Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global**
+Expanded to 50 countries.
+:::
+:::
+
+##
+
+::: {.timeline .vertical .fragment-conveyor}
+::: {.event .fragment data-label="2019"}
+**Idea Born** — Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global** — Expanded to 50 countries.
+:::
+:::
+
+##
+
+::: {.timeline .vertical-right .fragment-conveyor}
+::: {.event .fragment data-label="2019"}
+**Idea Born** — Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global** — Expanded to 50 countries.
+:::
+:::
+
+##
+
+::: {.timeline .vertical-alt .fragment-conveyor}
+::: {.event .fragment data-label="2019"}
+**Idea Born**
+Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global**
+Expanded to 50 countries.
+:::
+:::

@@ -62,25 +62,51 @@
     return last || events[0] || null;
   }
 
+  function isVerticalTimeline(timeline) {
+    return timeline.classList.contains('vertical') ||
+           timeline.classList.contains('vertical-right') ||
+           timeline.classList.contains('vertical-alt');
+  }
+
   function panToCenter(timeline, targetEvent) {
     if (!targetEvent) return;
-    const containerWidth = timeline.parentElement.offsetWidth;
-    const eventCenter = targetEvent.offsetLeft + targetEvent.offsetWidth / 2;
-    const offset = containerWidth / 2 - eventCenter;
-    timeline.style.transform = 'translateX(' + offset + 'px)';
+    if (isVerticalTimeline(timeline)) {
+      const containerHeight = timeline.parentElement.offsetHeight;
+      const eventCenter = targetEvent.offsetTop + targetEvent.offsetHeight / 2;
+      const offset = containerHeight / 2 - eventCenter;
+      timeline.style.transform = 'translateY(' + offset + 'px)';
+    } else {
+      const containerWidth = timeline.parentElement.offsetWidth;
+      const eventCenter = targetEvent.offsetLeft + targetEvent.offsetWidth / 2;
+      const offset = containerWidth / 2 - eventCenter;
+      timeline.style.transform = 'translateX(' + offset + 'px)';
+    }
   }
 
   function panConveyor(timeline, targetEvent) {
     if (!targetEvent) return;
-    const containerWidth = timeline.parentElement.offsetWidth;
-    const rightEdge = targetEvent.offsetLeft + targetEvent.offsetWidth;
-    if (rightEdge <= containerWidth) {
-      // Event fits in view — no panning needed
-      timeline.style.transform = 'translateX(0)';
+    if (isVerticalTimeline(timeline)) {
+      const containerHeight = timeline.parentElement.offsetHeight;
+      const bottomEdge = targetEvent.offsetTop + targetEvent.offsetHeight;
+      if (bottomEdge <= containerHeight) {
+        // Event fits in view — no panning needed
+        timeline.style.transform = 'translateY(0)';
+      } else {
+        // Pan just enough to show the bottom edge of the last visible event
+        const offset = containerHeight - bottomEdge;
+        timeline.style.transform = 'translateY(' + offset + 'px)';
+      }
     } else {
-      // Pan just enough to show the right edge of the last visible event
-      const offset = containerWidth - rightEdge;
-      timeline.style.transform = 'translateX(' + offset + 'px)';
+      const containerWidth = timeline.parentElement.offsetWidth;
+      const rightEdge = targetEvent.offsetLeft + targetEvent.offsetWidth;
+      if (rightEdge <= containerWidth) {
+        // Event fits in view — no panning needed
+        timeline.style.transform = 'translateX(0)';
+      } else {
+        // Pan just enough to show the right edge of the last visible event
+        const offset = containerWidth - rightEdge;
+        timeline.style.transform = 'translateX(' + offset + 'px)';
+      }
     }
   }
 
