@@ -1,0 +1,90 @@
+---
+title: "Fragments"
+---
+
+Fragment support is RevealJS-only. In all other HTML formats, fragment classes are automatically stripped and all events display statically.
+
+## Basic fragment reveal
+
+Add `.fragment` to individual `.event` divs to reveal them one at a time as you advance the presentation.
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update**
+:::
+:::
+```
+
+The first event is always visible; subsequent events appear on each advance.
+
+## Pan modes
+
+For timelines with more events than fit on a slide, two pan modes keep the active event in view.
+
+| Class on `.timeline` | Behavior |
+|---|---|
+| `.fragment-slide` | Centers the active event in the viewport on each advance |
+| `.fragment-conveyor` | Steps only when the next event would be clipped by the slide edge |
+
+Pan modes work with all layout variants.
+
+### fragment-slide
+
+```markdown
+::: {.timeline .horizontal .fragment-slide}
+::: {.event data-label="2019"}
+**Idea Born**
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started**
+:::
+...
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-slide.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+### fragment-conveyor
+
+```markdown
+::: {.timeline .horizontal .fragment-conveyor}
+...
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-conveyor.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+### Vertical pan
+
+```markdown
+::: {.timeline .vertical .fragment-conveyor}
+...
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-vertical.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
+### Snake pan
+
+```markdown
+::: {.timeline .snake .fragment-conveyor}
+...
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-snake.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```

@@ -440,3 +440,120 @@
 }
 
 
+/* ============================================================
+   MODIFIER CLASSES
+   ============================================================ */
+
+/* ---- Line style: .tl-dashed, .tl-dotted ------------------- */
+
+.timeline.tl-dashed:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake)::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 8px,
+    transparent 8px, transparent 16px
+  );
+}
+
+.timeline.vertical.tl-dashed::before,
+.timeline.vertical-right.tl-dashed::before,
+.timeline.vertical-alt.tl-dashed::before {
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 8px,
+    transparent 8px, transparent 16px
+  );
+}
+
+.timeline.snake.tl-dashed .event:not(:last-child) { border-bottom-style: dashed; }
+.timeline.snake.tl-dashed .event:nth-child(odd)   { border-right-style:  dashed; }
+.timeline.snake.tl-dashed .event:nth-child(even)  { border-left-style:   dashed; }
+
+.timeline.tl-dotted:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake)::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 4px,
+    transparent 4px, transparent 10px
+  );
+}
+
+.timeline.vertical.tl-dotted::before,
+.timeline.vertical-right.tl-dotted::before,
+.timeline.vertical-alt.tl-dotted::before {
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 4px,
+    transparent 4px, transparent 10px
+  );
+}
+
+.timeline.snake.tl-dotted .event:not(:last-child) { border-bottom-style: dotted; }
+.timeline.snake.tl-dotted .event:nth-child(odd)   { border-right-style:  dotted; }
+.timeline.snake.tl-dotted .event:nth-child(even)  { border-left-style:   dotted; }
+
+
+/* ---- Dot shape: .tl-square, .tl-diamond, .tl-none --------- */
+
+.timeline.tl-square .event::after {
+  border-radius: 0;
+}
+
+/* Diamond: horizontal (default + explicit) needs translateX preserved */
+.timeline.tl-diamond .event::after,
+.timeline.horizontal.tl-diamond .event::after {
+  border-radius: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Diamond: vertical layouts have no translateX on the dot */
+.timeline.vertical.tl-diamond .event::after,
+.timeline.vertical-right.tl-diamond .event::after,
+.timeline.vertical-alt.tl-diamond .event::after,
+.timeline.snake.tl-diamond .event::after {
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+.timeline.tl-none .event::after {
+  display: none;
+}
+
+
+/* ---- Density: .tl-compact, .tl-spacious ------------------- */
+
+.timeline.tl-compact {
+  --tl-gap:          1rem;
+  --tl-dot-size:     10px;
+  --tl-label-size:   0.7em;
+  --tl-content-size: 0.85em;
+}
+
+.timeline.tl-spacious {
+  --tl-gap:          3.5rem;
+  --tl-dot-size:     18px;
+  --tl-label-size:   0.9em;
+  --tl-content-size: 1.1em;
+}
+
+
+/* ---- Dot icon: data-dot attribute -------------------------- */
+
+.timeline .event[data-dot]::after {
+  content: attr(data-dot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--tl-dot-size) * 0.6);
+  line-height: 1;
+  overflow: hidden;
+}
+
+
+/* ---- Event card: .tl-card ---------------------------------- */
+
+.timeline .event.tl-card {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+}
+
+

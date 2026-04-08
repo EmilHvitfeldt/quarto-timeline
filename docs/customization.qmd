@@ -1,0 +1,415 @@
+---
+title: "Customization"
+---
+
+Customization works at two levels: classes on `.timeline` that affect the whole component, and classes or attributes on individual `.event` divs. Built-in modifier classes handle common cases; CSS variable hooks let you go further with your own classes.
+
+## CSS variables
+
+All visual properties are exposed as CSS custom properties on `.timeline`. Override them inline on a single timeline or document-wide in a stylesheet.
+
+| Property | Default | Controls |
+|---|---|---|
+| `--tl-color-line` | `#222222` | Timeline line color |
+| `--tl-color-dot` | `#222222` | Dot border color |
+| `--tl-color-dot-bg` | `#ffffff` | Dot background color |
+| `--tl-color-label` | `#222222` | Label text color |
+| `--tl-color-content` | `currentColor` | Event content text color |
+| `--tl-dot-size` | `14px` | Dot diameter |
+| `--tl-line-width` | `3px` | Line thickness |
+| `--tl-label-size` | `0.8em` | Label font size |
+| `--tl-content-size` | `1em` | Content font size |
+| `--tl-gap` | `2rem` | Space between events |
+| `--tl-event-width` | `320px` | Fixed event width in pan modes |
+| `--tl-snake-radius` | `30px` | Corner radius of snake path turns |
+
+**Inline override** (single timeline):
+
+```markdown
+::: {.timeline .vertical style="--tl-color-dot: #e74c3c; --tl-gap: 3rem;"}
+...
+:::
+```
+
+**Document-wide override** (in `styles.scss` or a `<style>` block):
+
+```css
+.timeline {
+  --tl-color-dot: #e74c3c;
+}
+```
+
+---
+
+## Timeline modifier classes
+
+These classes go on the `.timeline` div and change its overall appearance.
+
+### Line style
+
+`.tl-dashed` and `.tl-dotted` change the line between events.
+
+::: {.timeline .vertical .tl-dashed}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept.
+:::
+::: {.event data-label="2021"}
+**First Release** — Version 1.0 launched.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Core engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-dashed}
+...
+:::
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+/* Horizontal layouts */
+.timeline.tl-dashed:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake)::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 8px,
+    transparent 8px, transparent 16px
+  );
+}
+
+/* Vertical layouts */
+.timeline.vertical.tl-dashed::before,
+.timeline.vertical-right.tl-dashed::before,
+.timeline.vertical-alt.tl-dashed::before {
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 8px,
+    transparent 8px, transparent 16px
+  );
+}
+
+/* Snake layout */
+.timeline.snake.tl-dashed .event:not(:last-child) { border-bottom-style: dashed; }
+.timeline.snake.tl-dashed .event:nth-child(odd)   { border-right-style:  dashed; }
+.timeline.snake.tl-dashed .event:nth-child(even)  { border-left-style:   dashed; }
+```
+
+</details>
+
+::: {.timeline .vertical .tl-dotted}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept.
+:::
+::: {.event data-label="2021"}
+**First Release** — Version 1.0 launched.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Core engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-dotted}
+...
+:::
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+/* Horizontal layouts */
+.timeline.tl-dotted:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake)::before {
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 4px,
+    transparent 4px, transparent 10px
+  );
+}
+
+/* Vertical layouts */
+.timeline.vertical.tl-dotted::before,
+.timeline.vertical-right.tl-dotted::before,
+.timeline.vertical-alt.tl-dotted::before {
+  background: repeating-linear-gradient(
+    180deg,
+    var(--tl-color-line) 0px, var(--tl-color-line) 4px,
+    transparent 4px, transparent 10px
+  );
+}
+
+/* Snake layout */
+.timeline.snake.tl-dotted .event:not(:last-child) { border-bottom-style: dotted; }
+.timeline.snake.tl-dotted .event:nth-child(odd)   { border-right-style:  dotted; }
+.timeline.snake.tl-dotted .event:nth-child(even)  { border-left-style:   dotted; }
+```
+
+</details>
+
+### Dot shape
+
+`.tl-square`, `.tl-diamond`, and `.tl-none` change the shape of the event markers.
+
+::: timeline
+::: {.event data-label="Circle"}
+Default round dot.
+:::
+:::
+
+::: {.timeline .tl-square}
+::: {.event data-label="Square"}
+`.tl-square`
+:::
+:::
+
+::: {.timeline .tl-diamond}
+::: {.event data-label="Diamond"}
+`.tl-diamond`
+:::
+:::
+
+::: {.timeline .tl-none}
+::: {.event data-label="None"}
+`.tl-none` — no dot rendered.
+:::
+:::
+
+```markdown
+::: {.timeline .tl-square}   <!-- square dots -->
+::: {.timeline .tl-diamond}  <!-- rotated square -->
+::: {.timeline .tl-none}     <!-- no dots -->
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.tl-square .event::after {
+  border-radius: 0;
+}
+
+/* Diamond: horizontal layout needs translateX preserved */
+.timeline.tl-diamond .event::after,
+.timeline.horizontal.tl-diamond .event::after {
+  border-radius: 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* Diamond: vertical layouts have no translateX */
+.timeline.vertical.tl-diamond .event::after,
+.timeline.vertical-right.tl-diamond .event::after,
+.timeline.vertical-alt.tl-diamond .event::after,
+.timeline.snake.tl-diamond .event::after {
+  border-radius: 0;
+  transform: rotate(45deg);
+}
+
+.timeline.tl-none .event::after {
+  display: none;
+}
+```
+
+</details>
+
+### Density
+
+`.tl-compact` and `.tl-spacious` adjust spacing, dot size, and font sizes as a unit.
+
+::: {.timeline .vertical .tl-compact}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept.
+:::
+::: {.event data-label="2021"}
+**First Release** — Version 1.0.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-compact}
+```
+
+::: {.timeline .vertical .tl-spacious}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept.
+:::
+::: {.event data-label="2021"}
+**First Release** — Version 1.0.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-spacious}
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.tl-compact {
+  --tl-gap:          1rem;
+  --tl-dot-size:     10px;
+  --tl-label-size:   0.7em;
+  --tl-content-size: 0.85em;
+}
+
+.timeline.tl-spacious {
+  --tl-gap:          3.5rem;
+  --tl-dot-size:     18px;
+  --tl-label-size:   0.9em;
+  --tl-content-size: 1.1em;
+}
+```
+
+</details>
+
+---
+
+## Dot icons
+
+Add a `data-dot` attribute to any `.event` to place a character inside its dot.
+
+::: timeline
+::: {.event data-label="Launched" data-dot="★"}
+Version 1.0 ships.
+:::
+::: {.event data-label="Milestone" data-dot="1"}
+First thousand users.
+:::
+::: {.event data-label="Deploy" data-dot="▲"}
+Infrastructure overhaul.
+:::
+:::
+
+```markdown
+::: {.event data-label="Launched" data-dot="★"}
+::: {.event data-label="Milestone" data-dot="1"}
+::: {.event data-label="Deploy" data-dot="▲"}
+```
+
+Works with any single character or number. The dot size is fixed by `--tl-dot-size`; content is centered and clipped within it.
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline .event[data-dot]::after {
+  content: attr(data-dot);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(var(--tl-dot-size) * 0.6);
+  line-height: 1;
+  overflow: hidden;
+}
+```
+
+</details>
+
+---
+
+## Event card
+
+Add `.tl-card` to any `.event` to give its content a subtle card background and border.
+
+::: {.timeline .vertical}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+
+Initial concept and planning phase. The team gathers to define scope and set milestones.
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users. Feedback collection begins immediately.
+:::
+:::
+
+```markdown
+::: {.event data-label="2020" .tl-card}
+Content here.
+:::
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline .event.tl-card {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+}
+```
+
+</details>
+
+---
+
+## User-defined classes
+
+For anything not covered by the built-in modifier classes, write your own CSS class and apply it to the event. The stable selectors to target are:
+
+```css
+.timeline { }              /* the container */
+.timeline .event { }       /* any event */
+.timeline .event::after {  /* the dot */
+  --tl-color-dot: ...;
+  --tl-color-dot-bg: ...;
+}
+.timeline .event::before { /* the label */
+  --tl-color-label: ...;
+}
+```
+
+### Example: custom event color
+
+```css
+.event.launch {
+  --tl-color-dot:   #2563eb;
+  --tl-color-label: #2563eb;
+}
+```
+
+```markdown
+::: {.event data-label="Launch" .launch}
+Content here.
+:::
+```
+
+### Example: highlighted event
+
+```css
+.event.highlight::before {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.event.highlight::after {
+  --tl-color-dot:    #dc2626;
+  --tl-color-dot-bg: #dc2626;
+  width: calc(var(--tl-dot-size) * 1.4);
+  height: calc(var(--tl-dot-size) * 1.4);
+}
+```
+
+### brand.yml integration
+
+If your document uses a Quarto brand file, you can reference brand colors through SCSS in a custom stylesheet:
+
+```scss
+/* styles.scss */
+.event.primary-event {
+  --tl-color-dot:   #{$brand-primary};
+  --tl-color-label: #{$brand-primary};
+}
+```

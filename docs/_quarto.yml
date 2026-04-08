@@ -1,0 +1,23 @@
+project:
+  type: website
+
+filters:
+  - timeline
+
+website:
+  title: "quarto-timeline"
+  navbar:
+    left:
+      - text: "Get Started"
+        href: index.qmd
+      - text: "Layouts"
+        href: layouts.qmd
+      - text: "Fragments"
+        href: fragments.qmd
+      - text: "Customization"
+        href: customization.qmd
+
+format:
+  html:
+    toc: true
+    toc-depth: 2

@@ -1,0 +1,210 @@
+---
+title: "Layouts"
+---
+
+Timelines are written as nested Pandoc divs. The outer `.timeline` div sets the layout; each inner `.event` div is one entry, with a `data-label` attribute for the marker.
+
+## Horizontal
+
+The default layout. Events are arranged left to right with a line across the top.
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+```
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical
+
+Line on the left, events stacked top to bottom.
+
+```markdown
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+...
+:::
+```
+
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical Right
+
+Mirror of vertical — line on the right, content flows left.
+
+```markdown
+::: {.timeline .vertical-right}
+...
+:::
+```
+
+::: {.timeline .vertical-right}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+## Vertical Alternating
+
+Center line with events alternating left and right.
+
+```markdown
+::: {.timeline .vertical-alt}
+...
+:::
+```
+
+::: {.timeline .vertical-alt}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Snake
+
+Events alternate left and right, connected by a continuous serpentine border path.
+
+```markdown
+::: {.timeline .snake}
+...
+:::
+```
+
+::: {.timeline .snake}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Grouped Events
+
+Multiple events sharing the same `data-label` are automatically grouped under a single marker.
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+:::
+```
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2022"}
+**Partnership**
+Signed deal with enterprise partner.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+Grouping is automatic and works with all layouts.
