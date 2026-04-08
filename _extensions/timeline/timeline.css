@@ -1,5 +1,5 @@
 /* ============================================================
-   Timeline Extension — Phase 2: Base Layouts
+   Timeline Extension
    ============================================================ */
 
 /* ---- CSS Custom Properties --------------------------------- */
@@ -9,14 +9,11 @@
   --tl-color-dot-bg:  #ffffff;
   --tl-color-label:   #222222;
   --tl-color-content: currentColor;
-  --tl-color-card-bg: #ffffff;
   --tl-dot-size:      14px;
   --tl-line-width:    3px;
   --tl-label-size:    0.8em;
   --tl-content-size:  1em;
   --tl-gap:           2rem;
-  --tl-card-radius:   6px;
-  --tl-card-shadow:   0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* ---- Shared base ------------------------------------------- */
@@ -62,11 +59,10 @@
 /* ============================================================
    HORIZONTAL LAYOUT (default when no layout class given)
 
-   Coordinate reference (px from .timeline top border):
-     y = 50px  : line
-     y = 80px  : event top edge (padding-top)
-     y = 43px  : dot top  → center = 43 + 7 = 50 ✓
-     y = 8px   : label top → bottom ≈ 22px, gap to line ≈ 28px ✓
+   Gap from event top edge to line = 30px (80px padding - 50px line).
+   Dot offset:   calc(-30px - dot_half) so dot center = line ✓
+   Label offset: calc(-65px - dot_half) so label bottom stays ~28px
+                 above the line regardless of dot size ✓
    ============================================================ */
 .timeline,
 .timeline.horizontal {
@@ -98,7 +94,7 @@
 .timeline .event::before,
 .timeline.horizontal .event::before {
   position: absolute;
-  top: -72px;
+  top: calc(-65px - var(--tl-dot-size) / 2);
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
@@ -107,7 +103,7 @@
 /* Dot: centered on the line */
 .timeline .event::after,
 .timeline.horizontal .event::after {
-  top: -37px;
+  top: calc(-30px - var(--tl-dot-size) / 2);
   left: 50%;
   transform: translateX(-50%);
 }
@@ -116,9 +112,9 @@
 /* ============================================================
    VERTICAL LAYOUT
 
-   Line at left: 40px. Events start at padding-left: 70px.
-   Dot left: -37px → left edge at 33px, center at 40px ✓
-   Label is in normal flow (not in the gutter) — no overlap risk.
+   Gap from event left edge to line = 30px (70px padding - 40px line).
+   Dot offset: calc(-30px - dot_half) → center on line ✓
+   Label is in normal flow — no gutter overlap risk.
    ============================================================ */
 .timeline.vertical {
   flex-direction: column;
@@ -127,7 +123,6 @@
   gap: 0;
 }
 
-/* Vertical line on left */
 .timeline.vertical::before {
   top: 0;
   bottom: 0;
@@ -143,7 +138,6 @@
   padding: 0 0 var(--tl-gap) 0;
 }
 
-/* Label: in normal flow above content */
 .timeline.vertical .event::before {
   position: static;
   display: block;
@@ -152,20 +146,15 @@
   margin-bottom: 4px;
 }
 
-/* Dot: on the left line, aligned with label text */
 .timeline.vertical .event::after {
   top: 4px;
-  left: -37px;
+  left: calc(-30px - var(--tl-dot-size) / 2);
   transform: none;
 }
 
 
 /* ============================================================
    VERTICAL-RIGHT LAYOUT (mirror of vertical)
-
-   Line at right: 40px. Events start at padding-right: 70px.
-   Dot right: -37px → right edge at 33px from timeline right, center at 40px ✓
-   Label is in normal flow (not in the gutter) — no overlap risk.
    ============================================================ */
 .timeline.vertical-right {
   flex-direction: column;
@@ -174,7 +163,6 @@
   gap: 0;
 }
 
-/* Vertical line on right */
 .timeline.vertical-right::before {
   top: 0;
   bottom: 0;
@@ -190,7 +178,6 @@
   padding: 0 0 var(--tl-gap) 0;
 }
 
-/* Label: in normal flow above content, right-aligned */
 .timeline.vertical-right .event::before {
   position: static;
   display: block;
@@ -199,11 +186,10 @@
   margin-bottom: 4px;
 }
 
-/* Dot: on the right line, aligned with label text */
 .timeline.vertical-right .event::after {
   top: 4px;
   left: auto;
-  right: -37px;
+  right: calc(-30px - var(--tl-dot-size) / 2);
   transform: none;
 }
 
@@ -211,17 +197,8 @@
 /* ============================================================
    VERTICAL-ALT LAYOUT (alternating left/right)
 
-   For a 1280px slide (inner width = 1240px after 20px padding each side):
-     Event width = calc(50% - 30px) ≈ 590px
-     Center line at left: 50% = 640px from .timeline border
-
-   Odd (left side, align-self: flex-start):
-     Event right = 20 + 590 = 610px. Gap to line = 30px.
-     Dot right: -37px → right at 647px, center at 640px ✓
-
-   Even (right side, align-self: flex-end):
-     Event left = 1260 - 590 = 670px. Gap from line = 30px.
-     Dot left: -37px → left at 633px, center at 640px ✓
+   Gap from each event edge to center line = 30px.
+   Dot offset: calc(-30px - dot_half) on appropriate side ✓
    ============================================================ */
 .timeline.vertical-alt {
   flex-direction: column;
@@ -230,7 +207,6 @@
   gap: 0;
 }
 
-/* Vertical line in the center */
 .timeline.vertical-alt::before {
   top: 0;
   bottom: 0;
@@ -247,21 +223,18 @@
   padding: 0 0 var(--tl-gap) 0;
 }
 
-/* Odd events: left side, right-aligned text */
 .timeline.vertical-alt .event:nth-child(odd) {
   align-self: flex-start;
   text-align: right;
   padding-right: 16px;
 }
 
-/* Even events: right side, left-aligned text */
 .timeline.vertical-alt .event:nth-child(even) {
   align-self: flex-end;
   text-align: left;
   padding-left: 16px;
 }
 
-/* Label: in normal flow above content (no absolute positioning) */
 .timeline.vertical-alt .event::before {
   position: static;
   display: block;
@@ -270,18 +243,60 @@
   margin-bottom: 4px;
 }
 
-/* Dot: odd events — right edge of event touches the center line */
 .timeline.vertical-alt .event:nth-child(odd)::after {
   top: 4px;
   left: auto;
-  right: -37px;
+  right: calc(-30px - var(--tl-dot-size) / 2);
   transform: none;
 }
 
-/* Dot: even events — left edge of event touches the center line */
 .timeline.vertical-alt .event:nth-child(even)::after {
   top: 4px;
-  left: -37px;
+  left: calc(-30px - var(--tl-dot-size) / 2);
   right: auto;
   transform: none;
 }
+
+
+/* ============================================================
+   GROUPED EVENTS (.tl-group)
+
+   The .tl-group.event wrapper is injected by JS when consecutive
+   events share the same data-label. It receives the shared dot
+   and label via the inherited .event CSS. Inner .event children
+   have their dot and label suppressed.
+   ============================================================ */
+
+/* Suppress dot and label on inner events */
+.timeline .tl-group .event::before,
+.timeline .tl-group .event::after {
+  display: none;
+}
+
+/* Reset inner event padding (overrides layout-specific padding) */
+.timeline .tl-group .event {
+  padding: 4px 6px;
+}
+
+/* Subtle divider between entries in the same group */
+.timeline .tl-group .event + .event {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin-top: 4px;
+  padding-top: 8px;
+}
+
+/* Vertical layouts: inner events flow naturally */
+.timeline.vertical .tl-group .event,
+.timeline.vertical-right .tl-group .event {
+  padding: 0 0 4px;
+}
+
+/* Vertical-alt: inner events must fill the group width, not inherit
+   the half-width from .timeline.vertical-alt .event */
+.timeline.vertical-alt .tl-group .event {
+  width: 100%;
+  padding: 0 0 4px;
+  text-align: inherit;
+}
+
+

@@ -88,3 +88,84 @@ Rewrote core engine for performance.
 Reached 1 million users worldwide.
 :::
 :::
+
+## Grouped — Horizontal
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2022"}
+**Partnership**
+Signed deal with enterprise partner.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+## Grouped — Vertical
+
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed** — Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+::: {.event data-label="2022"}
+**Partnership** — Signed deal with enterprise partner.
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+## Grouped — Vertical Alternating
+
+::: {.timeline .vertical-alt}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2020"}
+**Team Formed**
+Hired first three engineers.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2022"}
+**Partnership**
+Signed deal with enterprise partner.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
