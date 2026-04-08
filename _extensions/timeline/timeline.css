@@ -14,6 +14,7 @@
   --tl-label-size:    0.8em;
   --tl-content-size:  1em;
   --tl-gap:           2rem;
+  --tl-event-width:   320px;
 }
 
 /* ---- Shared base ------------------------------------------- */
@@ -255,6 +256,29 @@
   left: calc(-30px - var(--tl-dot-size) / 2);
   right: auto;
   transform: none;
+}
+
+
+/* ============================================================
+   FRAGMENT PAN MODES (.fragment-slide, .fragment-conveyor)
+
+   The timeline expands to max-content width so all events lay
+   out naturally beyond the viewport. JS applies translateX to
+   pan the strip; CSS provides the transition.
+
+   Events in pan modes get a fixed width so panning feels uniform.
+   ============================================================ */
+.timeline.fragment-slide,
+.timeline.fragment-conveyor {
+  width: max-content;
+  min-width: 100%;
+  transition: transform 0.5s ease;
+  overflow: visible;
+}
+
+.timeline.fragment-slide .event,
+.timeline.fragment-conveyor .event {
+  flex: 0 0 var(--tl-event-width);
 }
 
 

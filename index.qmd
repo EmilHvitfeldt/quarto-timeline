@@ -169,3 +169,61 @@ Signed deal with enterprise partner.
 Reached 1 million users worldwide.
 :::
 :::
+
+## Fragment — Slide (center)
+
+::: {.timeline .horizontal .fragment-slide}
+::: {.event .fragment data-label="2019"}
+**Idea Born**
+Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global**
+Expanded to 50 countries.
+:::
+:::
+
+## Fragment — Conveyor (step left)
+
+::: {.timeline .horizontal .fragment-conveyor}
+::: {.event .fragment data-label="2019"}
+**Idea Born**
+Napkin sketch becomes a roadmap.
+:::
+::: {.event .fragment data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event .fragment data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event .fragment data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event .fragment data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+::: {.event .fragment data-label="2024"}
+**Going Global**
+Expanded to 50 countries.
+:::
+:::

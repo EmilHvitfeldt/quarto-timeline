@@ -39,9 +39,114 @@
     }
   }
 
+
+  /* ── Phase 6: Fragment behavior ───────────────────────────────
+     Two pan modes for horizontal timelines with many events:
+
+     .fragment-slide   — centers the last visible event in the viewport
+     .fragment-conveyor — steps left so the last visible event's left
+                          edge aligns with the container's left edge
+
+     In non-revealjs HTML, all .fragment classes are stripped so
+     every event shows statically.
+  ──────────────────────────────────────────────────────────────── */
+
+  function getLastVisibleEvent(timeline) {
+    const events = Array.from(timeline.querySelectorAll(':scope > .event'));
+    let last = null;
+    for (const el of events) {
+      if (!el.classList.contains('fragment') || el.classList.contains('visible')) {
+        last = el;
+      }
+    }
+    return last || events[0] || null;
+  }
+
+  function panToCenter(timeline, targetEvent) {
+    if (!targetEvent) return;
+    const containerWidth = timeline.parentElement.offsetWidth;
+    const eventCenter = targetEvent.offsetLeft + targetEvent.offsetWidth / 2;
+    const offset = containerWidth / 2 - eventCenter;
+    timeline.style.transform = 'translateX(' + offset + 'px)';
+  }
+
+  function panConveyor(timeline, targetEvent) {
+    if (!targetEvent) return;
+    const containerWidth = timeline.parentElement.offsetWidth;
+    const rightEdge = targetEvent.offsetLeft + targetEvent.offsetWidth;
+    if (rightEdge <= containerWidth) {
+      // Event fits in view — no panning needed
+      timeline.style.transform = 'translateX(0)';
+    } else {
+      // Pan just enough to show the right edge of the last visible event
+      const offset = containerWidth - rightEdge;
+      timeline.style.transform = 'translateX(' + offset + 'px)';
+    }
+  }
+
+  function updatePan(timeline) {
+    const target = getLastVisibleEvent(timeline);
+    if (!target) return;
+    if (timeline.classList.contains('fragment-slide')) {
+      panToCenter(timeline, target);
+    } else if (timeline.classList.contains('fragment-conveyor')) {
+      panConveyor(timeline, target);
+    }
+  }
+
+  function initFragments() {
+    const isReveal = typeof window.Reveal !== 'undefined';
+
+    if (!isReveal) {
+      // Strip all fragment classes so every event shows statically
+      document.querySelectorAll('.timeline .fragment').forEach(function (el) {
+        el.classList.remove('fragment', 'visible', 'current-fragment');
+      });
+      return;
+    }
+
+    // React to fragment transitions
+    Reveal.on('fragmentshown', function (event) {
+      const timeline = event.fragment.closest('.timeline');
+      if (timeline) updatePan(timeline);
+    });
+
+    Reveal.on('fragmenthidden', function (event) {
+      const timeline = event.fragment.closest('.timeline');
+      if (timeline) updatePan(timeline);
+    });
+
+    // Initialize pan position when a slide becomes active
+    Reveal.on('slidechanged', function (event) {
+      if (event.currentSlide) {
+        event.currentSlide
+          .querySelectorAll('.timeline.fragment-slide, .timeline.fragment-conveyor')
+          .forEach(updatePan);
+      }
+    });
+
+    // Initialize pan position for the opening slide
+    function onReady() {
+      const current = Reveal.getCurrentSlide();
+      if (current) {
+        current
+          .querySelectorAll('.timeline.fragment-slide, .timeline.fragment-conveyor')
+          .forEach(updatePan);
+      }
+    }
+
+    if (Reveal.isReady()) {
+      onReady();
+    } else {
+      Reveal.on('ready', onReady);
+    }
+  }
+
+
   /* ── Init ──────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.timeline').forEach(groupDuplicateLabels);
+    initFragments();
   });
 
 })();
