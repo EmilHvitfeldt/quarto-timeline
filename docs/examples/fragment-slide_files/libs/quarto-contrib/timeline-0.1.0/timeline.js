@@ -65,7 +65,8 @@
   function isVerticalTimeline(timeline) {
     return timeline.classList.contains('vertical') ||
            timeline.classList.contains('vertical-right') ||
-           timeline.classList.contains('vertical-alt');
+           timeline.classList.contains('vertical-alt') ||
+           timeline.classList.contains('snake');
   }
 
   function panToCenter(timeline, targetEvent) {

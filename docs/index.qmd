@@ -159,6 +159,39 @@ Reached 1 million users worldwide.
 :::
 :::
 
+### Snake
+
+Events alternate left and right, connected by a continuous snaking border path.
+
+```markdown
+::: {.timeline .snake}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+...
+:::
+```
+
+::: {.timeline .snake}
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update**
+Rewrote core engine for performance.
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
 ## Grouped Events
 
 Multiple events sharing the same `data-label` are automatically grouped under a single marker by the extension.
@@ -271,6 +304,20 @@ Pan modes work with all four layout variants.
 <iframe src="examples/fragment-vertical.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
 ```
 
+### Snake pan
+
+```markdown
+::: {.timeline .snake .fragment-conveyor}
+::: {.event data-label="2020"}
+...
+:::
+:::
+```
+
+```{=html}
+<iframe src="examples/fragment-snake.html" width="100%" height="400" style="border: 1px solid #ddd; border-radius: 4px;"></iframe>
+```
+
 ## Customization
 
 All visual properties are exposed as CSS custom properties on `.timeline`, so you can override them per-document, per-slide, or per-timeline.
@@ -288,6 +335,7 @@ All visual properties are exposed as CSS custom properties on `.timeline`, so yo
 | `--tl-content-size` | `1em` | Content font size |
 | `--tl-gap` | `2rem` | Space between events |
 | `--tl-event-width` | `320px` | Fixed event width in pan modes |
+| `--tl-snake-radius` | `30px` | Corner radius of the snake path turns |
 
 Override inline on a single timeline:
 

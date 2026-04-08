@@ -278,26 +278,135 @@
 }
 
 /* Horizontal pan (default layout and .horizontal) */
-.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt),
-.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt) {
+.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake),
+.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake) {
   width: max-content;
   min-width: 100%;
 }
 
-.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt) .event,
-.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt) .event {
+.timeline.fragment-slide:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake) .event,
+.timeline.fragment-conveyor:not(.vertical):not(.vertical-right):not(.vertical-alt):not(.snake) .event {
   flex: 0 0 var(--tl-event-width);
 }
 
-/* Vertical pan (.vertical, .vertical-right, .vertical-alt) */
+/* Vertical pan (.vertical, .vertical-right, .vertical-alt, .snake) */
 .timeline.vertical.fragment-slide,
 .timeline.vertical.fragment-conveyor,
 .timeline.vertical-right.fragment-slide,
 .timeline.vertical-right.fragment-conveyor,
 .timeline.vertical-alt.fragment-slide,
-.timeline.vertical-alt.fragment-conveyor {
+.timeline.vertical-alt.fragment-conveyor,
+.timeline.snake.fragment-slide,
+.timeline.snake.fragment-conveyor {
   height: max-content;
   min-height: 100%;
+}
+
+
+/* ============================================================
+   SNAKE LAYOUT (alternating serpentine path)
+
+   Events alternate right/left, connected by a snaking border.
+   Odd events have a right border; even events have a left
+   border. border-top links each event to the previous one.
+   Rounded corners create the visual snake-path turn.
+   ============================================================ */
+.timeline.snake {
+  flex-direction: column;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  --tl-snake-radius: 30px;
+}
+
+.timeline.snake::before {
+  display: none;
+}
+
+.timeline.snake .event {
+  flex: none;
+  border-top: var(--tl-line-width) solid var(--tl-color-line);
+  padding: 30px;
+  text-align: left;
+}
+
+.timeline.snake .event:nth-child(odd) {
+  border-right: var(--tl-line-width) solid var(--tl-color-line);
+  border-top-right-radius: var(--tl-snake-radius);
+  border-bottom-right-radius: var(--tl-snake-radius);
+  margin-left: 30px;
+  padding-left: 0;
+}
+
+.timeline.snake .event:nth-child(even) {
+  border-left: var(--tl-line-width) solid var(--tl-color-line);
+  border-top-left-radius: var(--tl-snake-radius);
+  border-bottom-left-radius: var(--tl-snake-radius);
+  margin-right: 30px;
+  padding-right: 0;
+}
+
+.timeline.snake .event:first-child {
+  border-top: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.timeline.snake .event:last-child {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+/* Label: floated above the turn corner */
+.timeline.snake .event::before {
+  position: absolute;
+  white-space: nowrap;
+}
+
+.timeline.snake .event:nth-child(odd)::before {
+  top: 0;
+  right: 0;
+  left: auto;
+  transform: translateY(-100%);
+}
+
+.timeline.snake .event:nth-child(even)::before {
+  top: 0;
+  left: 0;
+  right: auto;
+  transform: translateY(-100%);
+}
+
+/* First event has no top border — label sits inside at top */
+.timeline.snake .event:first-child::before {
+  right: 4px;
+  left: auto;
+  transform: none;
+}
+
+/* Dot: centered at the turn corner */
+.timeline.snake .event::after {
+  top: calc(-1 * var(--tl-dot-size) / 2 - var(--tl-line-width) / 2);
+  left: auto;
+  transform: none;
+}
+
+.timeline.snake .event:nth-child(odd)::after {
+  right: calc(-1 * var(--tl-dot-size) / 2 - var(--tl-line-width) / 2);
+}
+
+.timeline.snake .event:nth-child(even)::after {
+  left: calc(-1 * var(--tl-dot-size) / 2 - var(--tl-line-width) / 2);
+  right: auto;
+}
+
+/* Suppress snake borders/margins on inner grouped events */
+.timeline.snake .tl-group .event {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  padding: 4px 6px;
+  text-align: inherit;
 }
 
 
