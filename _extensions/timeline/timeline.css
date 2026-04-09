@@ -15,6 +15,7 @@
   --tl-content-size:  1em;
   --tl-gap:           2rem;
   --tl-event-width:   320px;
+  --tl-empty-height:  3rem;
 }
 
 /* ---- Shared base ------------------------------------------- */
@@ -425,6 +426,13 @@
   padding-top: 8px;
 }
 
+/* Suppress divider when either side of the pair is empty */
+.timeline .tl-group .event.tl-empty + .event,
+.timeline .tl-group .event + .event.tl-empty {
+  border-top: none;
+  margin-top: 0;
+}
+
 /* Vertical layouts: inner events flow naturally */
 .timeline.vertical .tl-group .event,
 .timeline.vertical-right .tl-group .event {
@@ -532,6 +540,19 @@
   --tl-dot-size:     1.125rem;
   --tl-label-size:   0.9em;
   --tl-content-size: 1.1em;
+}
+
+
+/* ---- Empty event height: --tl-empty-height ---------------- */
+/* Vertical empty events are naturally shorter than events with
+   content. Set --tl-empty-height on .timeline to add extra space
+   below the label, beyond the normal gap, keeping spacing
+   consistent with neighboring events. */
+
+.timeline.vertical .event.tl-empty,
+.timeline.vertical-right .event.tl-empty,
+.timeline.vertical-alt .event.tl-empty {
+  padding-bottom: calc(var(--tl-gap) + var(--tl-empty-height));
 }
 
 

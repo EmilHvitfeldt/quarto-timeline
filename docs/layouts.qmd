@@ -208,3 +208,97 @@ Reached 1 million users worldwide.
 :::
 
 Grouping is automatic and works with all layouts.
+
+## Empty Events
+
+An event with no content — just a label and dot, nothing below — is written as an empty div. Use this to mark a year or period where nothing notable occurred, keeping the timeline continuous without gaps.
+
+```markdown
+::: {.event data-label="2023"}
+:::
+```
+
+**Horizontal:**
+
+```markdown
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+```
+
+::: timeline
+::: {.event data-label="2020"}
+**Project Started**
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release**
+Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+:::
+::: {.event data-label="2023"}
+**Scale Up**
+Reached 1 million users worldwide.
+:::
+:::
+
+**Vertical:**
+
+```markdown
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+```
+
+::: {.timeline .vertical}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+:::
+::: {.event data-label="2023"}
+**Scale Up** — Reached 1 million users worldwide.
+:::
+:::
+
+Multiple consecutive empty events work the same way — each gets its own dot and label:
+
+::: {.timeline .vertical}
+::: {.event data-label="2019"}
+**Idea Born** — Napkin sketch becomes a roadmap.
+:::
+::: {.event data-label="2020"}
+:::
+::: {.event data-label="2021"}
+:::
+::: {.event data-label="2022"}
+**First Release** — Version 1.0 ships.
+:::
+:::

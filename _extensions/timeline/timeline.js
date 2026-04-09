@@ -170,9 +170,25 @@
   }
 
 
+  /* ── Phase 5: Mark empty events ───────────────────────────────
+     CSS :empty fails when Pandoc emits a newline or <p></p> inside
+     the div. textContent.trim() covers all those cases.
+  ──────────────────────────────────────────────────────────────── */
+  function markEmptyEvents(timeline) {
+    timeline.querySelectorAll(':scope > .event').forEach(function (el) {
+      if (el.textContent.trim() === '') {
+        el.classList.add('tl-empty');
+      }
+    });
+  }
+
+
   /* ── Init ──────────────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.timeline').forEach(groupDuplicateLabels);
+    document.querySelectorAll('.timeline').forEach(function (tl) {
+      markEmptyEvents(tl);
+      groupDuplicateLabels(tl);
+    });
     initFragments();
   });
 

@@ -42,6 +42,7 @@ All visual properties are exposed as CSS custom properties on `.timeline`. Overr
 | `--tl-gap` | `2rem` | Space between events |
 | `--tl-event-width` | `320px` | Fixed event width in pan modes |
 | `--tl-snake-radius` | `1.875rem` | Corner radius of snake path turns |
+| `--tl-empty-height` | `3rem` | Extra space added below the label of empty events in vertical layouts |
 
 **Inline override** (single timeline):
 
