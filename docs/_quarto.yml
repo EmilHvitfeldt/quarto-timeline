@@ -13,20 +13,22 @@ website:
     left:
       - text: "Get Started"
         href: index.qmd
-      - text: "Layouts"
-        href: layouts.qmd
-      - text: "Fragments"
-        href: fragments.qmd
-      - text: "Images & Plots"
-        href: images.qmd
-      - text: "Programmatic"
-        href: programmatic.qmd
-      - text: "Customization"
-        href: customization.qmd
-      - text: "Theming"
-        href: theming.qmd
       - text: "Gallery"
         href: gallery.qmd
+      - text: "Documentation"
+        menu:
+          - text: "Layouts"
+            href: layouts.qmd
+          - text: "Fragments"
+            href: fragments.qmd
+          - text: "Images & Plots"
+            href: images.qmd
+          - text: "Programmatic"
+            href: programmatic.qmd
+          - text: "Customization"
+            href: customization.qmd
+          - text: "Theming"
+            href: theming.qmd
 
 format:
   html:
