@@ -11,7 +11,10 @@
       "Bash(unzip -o timeline-css.zip -d timeline-css)",
       "Bash(unzip -o timeline-custom-counter-with-gradient-border.zip -d timeline-gradient)",
       "Bash(quarto render:*)",
-      "Bash(ln -s ../_extensions /Users/emilhvitfeldt/Desktop/quarto-timeline/docs/_extensions)"
+      "Bash(ln -s ../_extensions /Users/emilhvitfeldt/Desktop/quarto-timeline/docs/_extensions)",
+      "Read(//Users/emilhvitfeldt/Desktop/**)",
+      "Read(//private/tmp/**)",
+      "Bash(unzip -o /Users/emilhvitfeldt/Desktop/ul-timeline-cards.zip -d ul-timeline-cards)"
     ]
   }
 }

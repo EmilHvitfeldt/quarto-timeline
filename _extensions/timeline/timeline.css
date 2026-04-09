@@ -548,6 +548,18 @@
 }
 
 
+/* ---- Label banner: .tl-label-banner ----------------------- */
+
+.timeline.tl-label-banner .event::before {
+  color: white;
+  background: var(--tl-color-label);
+  padding: 0.4em 1em;
+  margin-bottom: 0.5rem;
+  border-radius: 2em;
+  white-space: nowrap;
+}
+
+
 /* ---- Event card: .tl-card ---------------------------------- */
 
 .timeline .event.tl-card {

@@ -273,6 +273,81 @@ Default round dot.
 
 ---
 
+## Label banner
+
+`.tl-label-banner` turns the label into a colored pill banner. By default it uses `--tl-color-label`, giving a uniform banner across all events.
+
+::: {.timeline .vertical .tl-label-banner}
+::: {.event data-label="2020"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2021"}
+**First Release** — Launched version 1.0 to early users.
+:::
+::: {.event data-label="2022"}
+**Major Update** — Rewrote core engine for performance.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-label-banner}
+...
+:::
+```
+
+Setting `--tl-color-label` and `--tl-color-dot` per-event gives each entry its own accent color.
+
+::: {.timeline .vertical-alt .tl-label-banner}
+::: {.event data-label="2002" style="--tl-color-label: #41516C; --tl-color-dot: #41516C;"}
+**Founding**
+The company is incorporated and the founding team assembles.
+:::
+::: {.event data-label="2007" style="--tl-color-label: #FBCA3E; --tl-color-dot: #FBCA3E;"}
+**First Product**
+Version 1.0 ships to early customers.
+:::
+::: {.event data-label="2012" style="--tl-color-label: #E24A68; --tl-color-dot: #E24A68;"}
+**Series B**
+Raised $20M to expand into new markets.
+:::
+::: {.event data-label="2017" style="--tl-color-label: #1B5F8C; --tl-color-dot: #1B5F8C;"}
+**Acquisition**
+Acquired by a strategic partner.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical-alt .tl-label-banner}
+::: {.event data-label="2002" style="--tl-color-label: #41516C; --tl-color-dot: #41516C;"}
+**Founding**
+:::
+::: {.event data-label="2007" style="--tl-color-label: #FBCA3E; --tl-color-dot: #FBCA3E;"}
+**First Product**
+:::
+...
+:::
+```
+
+Works with all vertical layouts and snake.
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.tl-label-banner .event::before {
+  color: white;
+  background: var(--tl-color-label);
+  padding: 0.4em 1em;
+  margin-bottom: 0.5rem;
+  border-radius: 2em;
+  white-space: nowrap;
+}
+```
+
+</details>
+
+---
+
 ## Dot icons
 
 Add a `data-dot` attribute to any `.event` to place a character inside its dot.
