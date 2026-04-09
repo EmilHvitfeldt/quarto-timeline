@@ -4,6 +4,26 @@ title: "Customization"
 
 Customization works at two levels: classes on `.timeline` that affect the whole component, and classes or attributes on individual `.event` divs. Built-in modifier classes handle common cases; CSS variable hooks let you go further with your own classes.
 
+### Timeline classes
+
+| Class | Effect |
+|---|---|
+| `.tl-dashed` | Dashed line |
+| `.tl-dotted` | Dotted line |
+| `.tl-square` | Square dots |
+| `.tl-diamond` | Diamond dots |
+| `.tl-none` | No dots |
+| `.tl-compact` | Tighter spacing and smaller text |
+| `.tl-spacious` | Looser spacing and larger text |
+| `.tl-label-banner` | Label as colored pill banner |
+
+### Event classes and attributes
+
+| Class / attribute | Effect |
+|---|---|
+| `.tl-card` | Card background and border on the event |
+| `data-dot="★"` | Character inside the dot |
+
 ## CSS variables
 
 All visual properties are exposed as CSS custom properties on `.timeline`. Override them inline on a single timeline or document-wide in a stylesheet.
