@@ -17,6 +17,7 @@
   --tl-gap:           2rem;
   --tl-event-width:   320px;
   --tl-empty-height:  3rem;
+  --tl-panel-width:   90px;
 }
 
 /* ---- Shared base ------------------------------------------- */
@@ -527,6 +528,29 @@
 }
 
 
+/* ---- Dot vertical centering: .tl-dot-center --------------- */
+
+.timeline.vertical.tl-dot-center .event::after,
+.timeline.vertical-right.tl-dot-center .event::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.timeline.vertical-alt.tl-dot-center .event:nth-child(odd)::after,
+.timeline.vertical-alt.tl-dot-center .event:nth-child(even)::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Preserve diamond rotation when centering */
+.timeline.vertical.tl-diamond.tl-dot-center .event::after,
+.timeline.vertical-right.tl-diamond.tl-dot-center .event::after,
+.timeline.vertical-alt.tl-diamond.tl-dot-center .event:nth-child(odd)::after,
+.timeline.vertical-alt.tl-diamond.tl-dot-center .event:nth-child(even)::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+
 /* ---- Density: .tl-compact, .tl-spacious ------------------- */
 
 .timeline.tl-compact {
@@ -628,6 +652,51 @@
 .timeline.vertical-alt .event.tl-card {
   padding-bottom: 0.875rem;
   margin-bottom: var(--tl-gap);
+}
+
+
+/* ---- Label panel: .tl-label-panel ------------------------- */
+/* Converts the label (::before) into a full-height colored left panel
+   on .tl-card events. Only applies in vertical layouts.
+   Set --tl-panel-width on the timeline to adjust the panel width.
+   Dot color defaults to --tl-color-label so per-event colors apply. */
+
+.timeline.vertical.tl-label-panel {
+  --tl-color-dot: var(--tl-color-label);
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card {
+  display: grid;
+  grid-template-columns: var(--tl-panel-width) 1fr;
+  padding: 0;
+  padding-bottom: 0;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card::before {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: var(--tl-color-label);
+  color: #fff;
+  margin-bottom: 0;
+  padding: 1rem 0.5rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card > * {
+  margin: 0;
+  padding: 0.4rem 1rem;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card > *:first-child {
+  padding-top: 0.75rem;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card > *:last-child {
+  padding-bottom: 0.75rem;
 }
 
 

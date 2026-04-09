@@ -140,6 +140,27 @@ Run quarto render.
 ::: gallery-card
 ::: gallery-preview
 
+::: {.timeline .vertical .tl-compact .tl-label-panel .tl-dot-center style="--tl-color-line: #d1d5db; --tl-panel-width: 55px;"}
+::: {.event data-label="Aug" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+:::
+::: {.event data-label="Aug" .tl-card style="--tl-color-label: #555ac0;"}
+**Lunch**
+:::
+::: {.event data-label="Aug" .tl-card style="--tl-color-label: #24b47e;"}
+**Exercise**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Panel Cards](gallery/panel-cards.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
 ::: {.timeline .snake .tl-label-banner .tl-dotted .tl-compact}
 ::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
 **Discovery**

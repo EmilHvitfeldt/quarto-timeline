@@ -1,0 +1,71 @@
+---
+title: "Panel Cards"
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-panel .event.tl-card > p:first-of-type {
+  font-weight: 600;
+  color: var(--tl-color-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+</style>
+
+::: {.timeline .vertical .tl-label-panel .tl-dot-center .ex-panel style="--tl-color-line: #d1d5db; --tl-dot-size: 1.25rem;"}
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nam!
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #555ac0;"}
+**Lunch**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nam!
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #24b47e;"}
+**Exercise**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nam!
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nam!
+:::
+:::
+
+`.tl-label-panel` turns each `.tl-card` label into a full-height colored side panel using CSS Grid. `.tl-dot-center` vertically centers the dot on the card. The panel color and dot color both follow `--tl-color-label` set per event.
+
+````markdown
+<style>
+/* optional: title styling in the content area */
+.ex-panel .event.tl-card > p:first-of-type {
+  font-weight: 600;
+  color: var(--tl-color-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+</style>
+
+::: {.timeline .vertical .tl-label-panel .tl-dot-center .ex-panel style="--tl-color-line: #d1d5db; --tl-dot-size: 1.25rem;"}
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #555ac0;"}
+**Lunch**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #24b47e;"}
+**Exercise**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+:::
+````

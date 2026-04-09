@@ -4,3 +4,5 @@
 /.quarto/project-cache/
 /.quarto/quarto-session-temp*/
 **/*.quarto_ipynb
+
+/.quarto/

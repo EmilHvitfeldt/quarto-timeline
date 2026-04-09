@@ -16,6 +16,8 @@ Customization works at two levels: classes on `.timeline` that affect the whole 
 | `.tl-compact` | Tighter spacing and smaller text |
 | `.tl-spacious` | Looser spacing and larger text |
 | `.tl-label-banner` | Label as colored pill banner |
+| `.tl-dot-center` | Vertically center the dot on each event (vertical layouts) |
+| `.tl-label-panel` | Label as a full-height colored left panel on `.tl-card` events |
 
 ### Event classes and attributes
 
@@ -44,6 +46,7 @@ All visual properties are exposed as CSS custom properties on `.timeline`. Overr
 | `--tl-event-width` | `320px` | Fixed event width in pan modes |
 | `--tl-snake-radius` | `1.875rem` | Corner radius of snake path turns |
 | `--tl-empty-height` | `3rem` | Extra space added below the label of empty events in vertical layouts |
+| `--tl-panel-width` | `90px` | Width of the label panel when using `.tl-label-panel` |
 
 **Inline override** (single timeline):
 
@@ -293,6 +296,63 @@ Default round dot.
 
 </details>
 
+### Dot centering
+
+`.tl-dot-center` vertically centers the dot on each event. In vertical layouts the dot defaults to the top of the event, which works well for short single-line events but looks unanchored on taller cards. Add `.tl-dot-center` to pin the dot to the middle of the event height.
+
+::: {.timeline .vertical .tl-dot-center}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+
+Initial concept and planning phase. The team gathers to define scope and set milestones.
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users.
+:::
+::: {.event data-label="2022" .tl-card}
+**Major Update**
+
+Core engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-dot-center}
+...
+:::
+```
+
+Works with `.vertical`, `.vertical-right`, and `.vertical-alt`. Diamond dots keep their rotation when combined with `.tl-diamond`.
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.vertical.tl-dot-center .event::after,
+.timeline.vertical-right.tl-dot-center .event::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.timeline.vertical-alt.tl-dot-center .event:nth-child(odd)::after,
+.timeline.vertical-alt.tl-dot-center .event:nth-child(even)::after {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Preserve diamond rotation when centering */
+.timeline.vertical.tl-diamond.tl-dot-center .event::after,
+.timeline.vertical-right.tl-diamond.tl-dot-center .event::after,
+.timeline.vertical-alt.tl-diamond.tl-dot-center .event:nth-child(odd)::after,
+.timeline.vertical-alt.tl-diamond.tl-dot-center .event:nth-child(even)::after {
+  transform: translateY(-50%) rotate(45deg);
+}
+```
+
+</details>
+
 ---
 
 ## Label banner
@@ -459,6 +519,99 @@ Content here.
   padding-bottom: 0.875rem;
   margin-bottom: var(--tl-gap);
 }
+```
+
+</details>
+
+---
+
+## Label panel
+
+`.tl-label-panel` turns the label into a full-height colored side panel on `.tl-card` events. It uses CSS Grid to place the label in a fixed-width column on the left, with the event content filling the remaining width. Only applies in `.vertical` layouts.
+
+The panel color follows `--tl-color-label`, and the dot color defaults to match it — so setting one variable per event controls the whole accent.
+
+<style>
+.ex-panel-doc .event.tl-card > p:first-of-type {
+  font-weight: 600;
+  color: var(--tl-color-label);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.9em;
+}
+</style>
+
+::: {.timeline .vertical .tl-label-panel .tl-dot-center .ex-panel-doc style="--tl-color-line: #d1d5db; --tl-dot-size: 1.25rem;"}
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #555ac0;"}
+**Lunch**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #24b47e;"}
+**Exercise**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-label-panel .tl-dot-center style="--tl-color-line: #d1d5db; --tl-dot-size: 1.25rem;"}
+::: {.event data-label="Aug 2019" .tl-card style="--tl-color-label: #9251ac;"}
+**Birthday**
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit.
+:::
+...
+:::
+```
+
+Control the panel width with `--tl-panel-width` (default `90px`):
+
+```markdown
+::: {.timeline .vertical .tl-label-panel style="--tl-panel-width: 120px;"}
+```
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.vertical.tl-label-panel {
+  --tl-color-dot: var(--tl-color-label);
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card {
+  display: grid;
+  grid-template-columns: var(--tl-panel-width) 1fr;
+  padding: 0;
+  padding-bottom: 0;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card::before {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1;
+  grid-row: 1 / span 20;
+  background: var(--tl-color-label);
+  color: #fff;
+  margin-bottom: 0;
+  padding: 1rem 0.5rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card > * {
+  margin: 0;
+  padding: 0.4rem 1rem;
+}
+
+.timeline.vertical.tl-label-panel .event.tl-card > *:first-child { padding-top: 0.75rem; }
+.timeline.vertical.tl-label-panel .event.tl-card > *:last-child  { padding-bottom: 0.75rem; }
 ```
 
 </details>
