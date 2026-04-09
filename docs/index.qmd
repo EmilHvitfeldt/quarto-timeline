@@ -59,4 +59,5 @@ Rewrote core engine for performance.
 
 - [Layouts](layouts.qmd) — all five layout variants and grouped events
 - [Fragments](fragments.qmd) — RevealJS fragment reveal and pan modes
+- [Images & Plots](images.qmd) — inline images and R code chunk output in events
 - [Customization](customization.qmd) — CSS variables, modifier classes, dot icons, and user-defined styles

@@ -564,6 +564,32 @@
 }
 
 
+/* ---- Images and code-chunk output in events ---------------- */
+
+/* Prevent images from overflowing their event container */
+.timeline .event img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reset browser-default figure margins (typically 1em 40px) */
+.timeline .event figure {
+  margin: 0;
+}
+
+/* Quarto code-chunk output wrappers: remove default margins so
+   plots sit flush without adding extra vertical space */
+.timeline .event .cell,
+.timeline .event .cell-output-display {
+  margin: 0;
+}
+
+/* The <p> that Quarto wraps around plot <img> elements */
+.timeline .event figure p,
+.timeline .event .cell-output-display p {
+  margin: 0;
+}
+
 /* ---- Event card: .tl-card ---------------------------------- */
 
 .timeline .event.tl-card {
