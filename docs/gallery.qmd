@@ -1,0 +1,165 @@
+---
+title: "Gallery"
+toc: false
+---
+
+<style>
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-card {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 1;
+}
+
+.gallery-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.25);
+}
+
+.gallery-preview {
+  padding: 1rem;
+  pointer-events: none;
+  flex: 1;
+  overflow: hidden;
+}
+
+.gallery-card-label {
+  padding: 0.6rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.gallery-card-label a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* stretch the link to cover the whole card */
+.gallery-card-label a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+</style>
+
+::: gallery-grid
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-co-prev .event { --tl-color-dot: var(--tl-color-label); }
+</style>
+
+::: {.timeline .vertical .tl-label-banner .tl-compact .ex-co-prev}
+::: {.event data-label="2002" style="--tl-color-label: #41516C;"}
+**Founding**
+:::
+::: {.event data-label="2007" style="--tl-color-label: #E24A68;"}
+**First Product**
+:::
+::: {.event data-label="2012" style="--tl-color-label: #FBCA3E;"}
+**Series B**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Company History](gallery/company-history.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-st-prev .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
+</style>
+
+::: {.timeline .vertical .tl-compact .ex-st-prev}
+::: {.event data-label="Install" data-dot="1"}
+Add the extension.
+:::
+::: {.event data-label="Filter" data-dot="2"}
+Add to YAML.
+:::
+::: {.event data-label="Render" data-dot="3"}
+Run quarto render.
+:::
+:::
+
+:::
+::: gallery-card-label
+[Numbered Steps](gallery/numbered-steps.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+::: {.timeline .snake .tl-label-banner .tl-dotted .tl-compact}
+::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
+**Discovery**
+:::
+::: {.event data-label="Q2" style="--tl-color-label: #059669; --tl-color-dot: #059669;"}
+**Build**
+:::
+::: {.event data-label="Q3" style="--tl-color-label: #dc2626; --tl-color-dot: #dc2626;"}
+**Launch**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Snake Roadmap](gallery/snake-roadmap.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-hl-prev .event.highlight {
+  --tl-color-dot:    #dc2626;
+  --tl-color-dot-bg: #dc2626;
+  --tl-color-label:  #dc2626;
+}
+.ex-hl-prev .event.highlight::after {
+  width:  calc(var(--tl-dot-size) * 1.6);
+  height: calc(var(--tl-dot-size) * 1.6);
+  left:   calc(-30px - var(--tl-dot-size) * 0.8);
+}
+</style>
+
+::: {.timeline .vertical .tl-compact .ex-hl-prev}
+::: {.event data-label="Jan"}
+Beta released.
+:::
+::: {.event data-label="Jun" .highlight}
+**Public launch**
+:::
+::: {.event data-label="Aug"}
+First patch.
+:::
+:::
+
+:::
+::: gallery-card-label
+[Highlighted Milestone](gallery/highlighted-milestone.html)
+:::
+:::
+
+:::

@@ -1,0 +1,55 @@
+---
+title: "Company History"
+---
+
+[← Gallery](../gallery.html)
+
+`.vertical-alt` with `.tl-label-banner` and per-event accent colors set via inline `style`. A shared CSS class mirrors `--tl-color-label` into `--tl-color-dot` so only one variable needs to be set per event.
+
+<style>
+.ex-company .event { --tl-color-dot: var(--tl-color-label); }
+</style>
+
+::: {.timeline .vertical-alt .tl-label-banner .ex-company}
+::: {.event data-label="2002" style="--tl-color-label: #41516C;"}
+**Founding**
+The company is incorporated and the founding team assembles.
+:::
+::: {.event data-label="2007" style="--tl-color-label: #E24A68;"}
+**First Product**
+Version 1.0 ships to early customers after two years of development.
+:::
+::: {.event data-label="2012" style="--tl-color-label: #FBCA3E;"}
+**Series B**
+Raised $20M to expand into new markets and double the team.
+:::
+::: {.event data-label="2017" style="--tl-color-label: #4CADAD;"}
+**Acquisition**
+Acquired by a strategic partner, marking the end of the independent era.
+:::
+:::
+
+````markdown
+<style>
+.ex-company .event { --tl-color-dot: var(--tl-color-label); }
+</style>
+
+::: {.timeline .vertical-alt .tl-label-banner .ex-company}
+::: {.event data-label="2002" style="--tl-color-label: #41516C;"}
+**Founding**
+The company is incorporated and the founding team assembles.
+:::
+::: {.event data-label="2007" style="--tl-color-label: #E24A68;"}
+**First Product**
+Version 1.0 ships to early customers after two years of development.
+:::
+::: {.event data-label="2012" style="--tl-color-label: #FBCA3E;"}
+**Series B**
+Raised $20M to expand into new markets and double the team.
+:::
+::: {.event data-label="2017" style="--tl-color-label: #4CADAD;"}
+**Acquisition**
+Acquired by a strategic partner, marking the end of the independent era.
+:::
+:::
+````

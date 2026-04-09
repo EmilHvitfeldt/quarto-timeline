@@ -16,6 +16,8 @@ website:
         href: fragments.qmd
       - text: "Customization"
         href: customization.qmd
+      - text: "Gallery"
+        href: gallery.qmd
 
 format:
   html:

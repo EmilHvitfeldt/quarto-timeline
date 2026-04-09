@@ -1,0 +1,47 @@
+---
+title: "Snake Roadmap"
+---
+
+[← Gallery](../gallery.html)
+
+`.snake` with `.tl-label-banner` and `.tl-dotted`. Per-event colors are set inline on each event.
+
+::: {.timeline .snake .tl-label-banner .tl-dotted}
+::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
+**Discovery**
+Requirements gathering and stakeholder interviews. Define scope, constraints, and success criteria.
+:::
+::: {.event data-label="Q2" style="--tl-color-label: #0891b2; --tl-color-dot: #0891b2;"}
+**Design**
+Wireframes, prototypes, and design system setup. Validate with users before moving to build.
+:::
+::: {.event data-label="Q3" style="--tl-color-label: #059669; --tl-color-dot: #059669;"}
+**Build**
+Development sprints with continuous integration. Weekly demos to keep stakeholders aligned.
+:::
+::: {.event data-label="Q4" style="--tl-color-label: #dc2626; --tl-color-dot: #dc2626;"}
+**Launch**
+Staged rollout, monitoring, and structured feedback collection. Retrospective at end of quarter.
+:::
+:::
+
+````markdown
+::: {.timeline .snake .tl-label-banner .tl-dotted}
+::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
+**Discovery**
+Requirements gathering and stakeholder interviews.
+:::
+::: {.event data-label="Q2" style="--tl-color-label: #0891b2; --tl-color-dot: #0891b2;"}
+**Design**
+Wireframes, prototypes, and design system setup.
+:::
+::: {.event data-label="Q3" style="--tl-color-label: #059669; --tl-color-dot: #059669;"}
+**Build**
+Development sprints with continuous integration.
+:::
+::: {.event data-label="Q4" style="--tl-color-label: #dc2626; --tl-color-dot: #dc2626;"}
+**Launch**
+Staged rollout, monitoring, and feedback collection.
+:::
+:::
+````

@@ -1,0 +1,68 @@
+---
+title: "Highlighted Milestone"
+---
+
+[← Gallery](../gallery.html)
+
+`.vertical` with a user-defined `.highlight` class that enlarges the dot and changes its color for a single event. Everything else uses the default styling.
+
+<style>
+.ex-milestone .event.highlight {
+  --tl-color-dot:    #dc2626;
+  --tl-color-dot-bg: #dc2626;
+  --tl-color-label:  #dc2626;
+}
+.ex-milestone .event.highlight::after {
+  width:  calc(var(--tl-dot-size) * 1.6);
+  height: calc(var(--tl-dot-size) * 1.6);
+  left:   calc(-30px - var(--tl-dot-size) * 0.8);
+}
+</style>
+
+::: {.timeline .vertical .ex-milestone}
+::: {.event data-label="Jan"}
+Initial planning completed. Scope and milestones agreed by all stakeholders.
+:::
+::: {.event data-label="Mar"}
+Beta released to internal testers. Feedback loop established.
+:::
+::: {.event data-label="Jun" .highlight}
+**Public launch** — version 1.0 ships to all users.
+:::
+::: {.event data-label="Aug"}
+First patch release addressing early user feedback and edge cases.
+:::
+::: {.event data-label="Oct"}
+Version 1.1 ships with the first set of community-requested features.
+:::
+:::
+
+````markdown
+<style>
+.ex-milestone .event.highlight {
+  --tl-color-dot:    #dc2626;
+  --tl-color-dot-bg: #dc2626;
+  --tl-color-label:  #dc2626;
+}
+.ex-milestone .event.highlight::after {
+  width:  calc(var(--tl-dot-size) * 1.6);
+  height: calc(var(--tl-dot-size) * 1.6);
+  left:   calc(-30px - var(--tl-dot-size) * 0.8);
+}
+</style>
+
+::: {.timeline .vertical .ex-milestone}
+::: {.event data-label="Jan"}
+Initial planning completed.
+:::
+::: {.event data-label="Mar"}
+Beta released to internal testers.
+:::
+::: {.event data-label="Jun" .highlight}
+**Public launch** — version 1.0 ships.
+:::
+::: {.event data-label="Aug"}
+First patch release.
+:::
+:::
+````
