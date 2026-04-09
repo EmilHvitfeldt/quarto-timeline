@@ -9,8 +9,6 @@ format:
 
 [← Gallery](../gallery.html)
 
-`.vertical` with `.tl-card` on a dark Bootstrap theme. Brand colors are applied to the timeline line, dot, and label via a SCSS stylesheet. Card backgrounds and shadows adapt automatically through `--tl-color-card-bg`.
-
 ::: {.timeline .vertical}
 ::: {.event data-label="Jan 2024" .tl-card}
 **Kickoff**
@@ -34,7 +32,7 @@ Full release with stable API, complete documentation, and long-term support.
 :::
 :::
 
----
+`.vertical` with `.tl-card` on a dark Bootstrap theme. Brand colors are applied to the timeline line, dot, and label via a SCSS stylesheet. Card backgrounds and shadows adapt automatically through `--tl-color-card-bg`.
 
 To reproduce this in your own project, define a `_brand.yml` and a SCSS stylesheet, then reference them in the document frontmatter or project `_quarto.yml`.
 

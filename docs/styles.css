@@ -1,0 +1,7 @@
+.timeline {
+  margin-bottom: 5rem;
+}
+
+.timeline + p {
+  margin-bottom: 5rem;
+}

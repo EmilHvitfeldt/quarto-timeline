@@ -4,8 +4,6 @@ title: "Highlighted Milestone"
 
 [← Gallery](../gallery.html)
 
-`.vertical` with a user-defined `.highlight` class that enlarges the dot and changes its color for a single event. Everything else uses the default styling.
-
 <style>
 .ex-milestone .event.highlight {
   --tl-color-dot:    #dc2626;
@@ -36,6 +34,8 @@ First patch release addressing early user feedback and edge cases.
 Version 1.1 ships with the first set of community-requested features.
 :::
 :::
+
+`.vertical` with a user-defined `.highlight` class that enlarges the dot and changes its color for a single event. Everything else uses the default styling.
 
 ````markdown
 <style>

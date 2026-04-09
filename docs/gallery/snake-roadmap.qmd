@@ -4,8 +4,6 @@ title: "Snake Roadmap"
 
 [← Gallery](../gallery.html)
 
-`.snake` with `.tl-label-banner` and `.tl-dotted`. Per-event colors are set inline on each event.
-
 ::: {.timeline .snake .tl-label-banner .tl-dotted}
 ::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
 **Discovery**
@@ -24,6 +22,8 @@ Development sprints with continuous integration. Weekly demos to keep stakeholde
 Staged rollout, monitoring, and structured feedback collection. Retrospective at end of quarter.
 :::
 :::
+
+`.snake` with `.tl-label-banner` and `.tl-dotted`. Per-event colors are set inline on each event.
 
 ````markdown
 ::: {.timeline .snake .tl-label-banner .tl-dotted}
