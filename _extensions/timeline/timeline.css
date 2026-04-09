@@ -567,9 +567,19 @@
 /* ---- Event card: .tl-card ---------------------------------- */
 
 .timeline .event.tl-card {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 6px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 0.875rem 1rem;
+}
+
+/* Vertical layouts use padding-bottom for the gap; card overrides that
+   and uses margin-bottom instead so the card is visually bounded */
+.timeline.vertical .event.tl-card,
+.timeline.vertical-right .event.tl-card,
+.timeline.vertical-alt .event.tl-card {
+  padding-bottom: 0.875rem;
+  margin-bottom: var(--tl-gap);
 }
 
 

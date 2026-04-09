@@ -417,7 +417,7 @@ Works with any single character or number. The dot automatically enlarges to `2e
 
 ## Event card
 
-Add `.tl-card` to any `.event` to give its content a subtle card background and border.
+Add `.tl-card` to any `.event` to give its content a card appearance with a white background and shadow.
 
 ::: {.timeline .vertical}
 ::: {.event data-label="2020" .tl-card}
@@ -443,9 +443,19 @@ Content here.
 
 ```css
 .timeline .event.tl-card {
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 6px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: 0.875rem 1rem;
+}
+
+/* Vertical layouts use padding-bottom for the gap; card overrides that
+   and uses margin-bottom instead so the card is visually bounded */
+.timeline.vertical .event.tl-card,
+.timeline.vertical-right .event.tl-card,
+.timeline.vertical-alt .event.tl-card {
+  padding-bottom: 0.875rem;
+  margin-bottom: var(--tl-gap);
 }
 ```
 
@@ -471,6 +481,25 @@ For anything not covered by the built-in modifier classes, write your own CSS cl
 
 ### Example: custom event color
 
+<style>
+.event.launch {
+  --tl-color-dot:   #2563eb;
+  --tl-color-label: #2563eb;
+}
+</style>
+
+::: {.timeline .vertical}
+::: {.event data-label="Planning"}
+Scope defined and team assembled.
+:::
+::: {.event data-label="Launch" .launch}
+**Public launch** — product ships to all users.
+:::
+::: {.event data-label="Follow-up"}
+First patch released based on feedback.
+:::
+:::
+
 ```css
 .event.launch {
   --tl-color-dot:   #2563eb;
@@ -480,11 +509,38 @@ For anything not covered by the built-in modifier classes, write your own CSS cl
 
 ```markdown
 ::: {.event data-label="Launch" .launch}
-Content here.
+**Public launch** — product ships to all users.
 :::
 ```
 
 ### Example: highlighted event
+
+<style>
+.event.highlight::before {
+  font-size: 1em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.event.highlight::after {
+  --tl-color-dot:    #dc2626;
+  --tl-color-dot-bg: #dc2626;
+  width: calc(var(--tl-dot-size) * 1.4);
+  height: calc(var(--tl-dot-size) * 1.4);
+}
+</style>
+
+::: {.timeline .vertical}
+::: {.event data-label="Jan"}
+Beta released.
+:::
+::: {.event data-label="Jun" .highlight}
+**Public launch**
+:::
+::: {.event data-label="Aug"}
+First patch.
+:::
+:::
 
 ```css
 .event.highlight::before {
@@ -499,6 +555,12 @@ Content here.
   width: calc(var(--tl-dot-size) * 1.4);
   height: calc(var(--tl-dot-size) * 1.4);
 }
+```
+
+```markdown
+::: {.event data-label="Jun" .highlight}
+**Public launch**
+:::
 ```
 
 ### brand.yml integration
