@@ -14,7 +14,10 @@
       "Bash(ln -s ../_extensions /Users/emilhvitfeldt/Desktop/quarto-timeline/docs/_extensions)",
       "Read(//Users/emilhvitfeldt/Desktop/**)",
       "Read(//private/tmp/**)",
-      "Bash(unzip -o /Users/emilhvitfeldt/Desktop/ul-timeline-cards.zip -d ul-timeline-cards)"
+      "Bash(unzip -o /Users/emilhvitfeldt/Desktop/ul-timeline-cards.zip -d ul-timeline-cards)",
+      "WebFetch(domain:quarto.org)",
+      "Bash(grep -l 'tl-color-line' docs/_site/site_libs/bootstrap/*.css)",
+      "Bash(grep -l 'tl-color-line' docs/_site/site_libs/**/*.css)"
     ]
   }
 }

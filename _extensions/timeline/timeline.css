@@ -9,6 +9,7 @@
   --tl-color-dot-bg:  #ffffff;
   --tl-color-label:   #222222;
   --tl-color-content: currentColor;
+  --tl-color-card-bg: #ffffff;
   --tl-dot-size:      0.875rem;
   --tl-line-width:    3px;
   --tl-label-size:    0.8em;
@@ -614,7 +615,7 @@
 /* ---- Event card: .tl-card ---------------------------------- */
 
 .timeline .event.tl-card {
-  background: #ffffff;
+  background: var(--tl-color-card-bg);
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 0.875rem 1rem;
@@ -629,4 +630,25 @@
   margin-bottom: var(--tl-gap);
 }
 
+
+/* ============================================================
+   DARK MODE DEFAULTS
+   ============================================================ */
+
+/* Quarto dark theme: Bootstrap data-bs-theme attribute */
+[data-bs-theme="dark"] .timeline {
+  --tl-color-line:    #aaaaaa;
+  --tl-color-dot:     #aaaaaa;
+  --tl-color-dot-bg:  var(--bs-body-bg, #212529);
+  --tl-color-label:   #cccccc;
+  --tl-color-card-bg: var(--bs-secondary-bg, #343a40);
+}
+
+[data-bs-theme="dark"] .timeline .tl-group .event + .event {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-bs-theme="dark"] .timeline .event.tl-card {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
+}
 

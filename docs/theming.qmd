@@ -1,0 +1,161 @@
+---
+title: "Theming"
+---
+
+The timeline extension ships sensible defaults for dark mode and integrates with Quarto's `brand.yml` for brand-consistent colors.
+
+## Dark mode
+
+Dark-mode defaults activate when the document uses a Quarto dark Bootstrap theme, which sets `data-bs-theme="dark"` on the page. No additional configuration is needed — the line, dot, label, and card colors all flip to values that work on dark backgrounds.
+
+### Default dark values
+
+| Variable | Light | Dark |
+|---|---|---|
+| `--tl-color-line` | `#222222` | `#aaaaaa` |
+| `--tl-color-dot` | `#222222` | `#aaaaaa` |
+| `--tl-color-dot-bg` | `#ffffff` | `#1a1a1a` / `var(--bs-body-bg)` |
+| `--tl-color-label` | `#222222` | `#cccccc` |
+| `--tl-color-card-bg` | `#ffffff` | `#2d2d2d` / `var(--bs-secondary-bg)` |
+
+When running under a Quarto Bootstrap theme with `data-bs-theme="dark"`, `--tl-color-dot-bg` and `--tl-color-card-bg` resolve to the Bootstrap body and secondary background variables so the dot and card match the actual page background exactly.
+
+The following preview uses inline styles to simulate a dark background:
+
+::: {style="background: #1a1a1a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;"}
+::: {.timeline .vertical style="--tl-color-line: #aaaaaa; --tl-color-dot: #aaaaaa; --tl-color-dot-bg: #1a1a1a; --tl-color-label: #cccccc; color: #dddddd;"}
+::: {.event data-label="2022"}
+**Project Started** — Initial concept and planning phase.
+:::
+::: {.event data-label="2023"}
+**First Release** — Version 1.0 ships to early users.
+:::
+::: {.event data-label="2024"}
+**Major Update** — Core engine rewrite for performance.
+:::
+:::
+:::
+
+Cards in dark mode use `--tl-color-card-bg`:
+
+::: {style="background: #1a1a1a; padding: 1.5rem; border-radius: 8px; margin: 1rem 0;"}
+::: {.timeline .vertical style="--tl-color-line: #aaaaaa; --tl-color-dot: #aaaaaa; --tl-color-dot-bg: #1a1a1a; --tl-color-label: #cccccc; --tl-color-card-bg: #2d2d2d; color: #dddddd;"}
+::: {.event data-label="2022" .tl-card}
+**Project Started**
+
+Initial concept and planning phase. The team gathers to define scope.
+:::
+::: {.event data-label="2023" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users. Feedback collection begins.
+:::
+:::
+:::
+
+### Enabling dark mode in Quarto
+
+To use a dark Bootstrap theme in a document:
+
+```yaml
+format:
+  html:
+    theme: darkly
+```
+
+For a user-toggleable light/dark pair (Quarto 1.3+):
+
+```yaml
+format:
+  html:
+    theme:
+      light: flatly
+      dark: darkly
+```
+
+### Customizing dark colors
+
+Override the dark defaults in a stylesheet by targeting `[data-bs-theme="dark"]`:
+
+```css
+[data-bs-theme="dark"] .timeline {
+  --tl-color-line: #7c3aed;
+  --tl-color-dot:  #7c3aed;
+}
+```
+
+---
+
+## brand.yml
+
+Quarto's `brand.yml` defines project-wide colors and typography. Wire those to the timeline CSS variables to keep timelines consistent with the rest of your document.
+
+### SCSS approach
+
+Create a custom SCSS stylesheet and reference brand variables using SCSS interpolation:
+
+```scss
+/* styles.scss */
+.timeline {
+  --tl-color-line:  #{$brand-primary};
+  --tl-color-dot:   #{$brand-primary};
+  --tl-color-label: #{$brand-primary};
+}
+```
+
+Reference it in your document or `_quarto.yml`:
+
+```yaml
+format:
+  html:
+    theme: [default, styles.scss]
+```
+
+### CSS variable approach
+
+Quarto populates Bootstrap CSS variables from `brand.yml`, so you can reference them directly in plain CSS:
+
+```css
+/* styles.css */
+.timeline {
+  --tl-color-line:  var(--bs-primary);
+  --tl-color-dot:   var(--bs-primary);
+  --tl-color-label: var(--bs-primary);
+}
+```
+
+### Per-event brand colors
+
+To color-code events by category, set per-event variables inline:
+
+```markdown
+::: {.event data-label="Q1" style="--tl-color-dot: var(--bs-primary); --tl-color-label: var(--bs-primary);"}
+...
+:::
+::: {.event data-label="Q2" style="--tl-color-dot: var(--bs-secondary); --tl-color-label: var(--bs-secondary);"}
+...
+:::
+```
+
+Or define category classes in SCSS and apply them in the markup:
+
+```scss
+/* styles.scss */
+.event.q1 {
+  --tl-color-dot:   #{$brand-primary};
+  --tl-color-label: #{$brand-primary};
+}
+.event.q2 {
+  --tl-color-dot:   #{$brand-secondary};
+  --tl-color-label: #{$brand-secondary};
+}
+```
+
+```markdown
+::: {.event data-label="Q1" .q1}
+First quarter milestones.
+:::
+::: {.event data-label="Q2" .q2}
+Second quarter milestones.
+:::
+```

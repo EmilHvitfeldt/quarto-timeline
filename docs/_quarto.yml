@@ -20,6 +20,8 @@ website:
         href: programmatic.qmd
       - text: "Customization"
         href: customization.qmd
+      - text: "Theming"
+        href: theming.qmd
       - text: "Gallery"
         href: gallery.qmd
 

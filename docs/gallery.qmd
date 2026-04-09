@@ -110,6 +110,36 @@ Run quarto render.
 ::: gallery-card
 ::: gallery-preview
 
+<style>
+.ex-brand-dark-prev {
+  background: #1a1a2e;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: #cccccc;
+}
+</style>
+
+::: {.timeline .vertical .tl-compact .ex-brand-dark-prev style="--tl-color-line: #7c3aed; --tl-color-dot: #7c3aed; --tl-color-label: #a78bfa; --tl-color-dot-bg: #1a1a2e; --tl-color-card-bg: #2d2b55;"}
+::: {.event data-label="Jan 2024" .tl-card}
+**Kickoff**
+:::
+::: {.event data-label="Apr 2024" .tl-card}
+**Alpha Release**
+:::
+::: {.event data-label="Jan 2025" .tl-card}
+**v1.0 Launch**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Brand Dark Mode](gallery/brand-dark.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
 ::: {.timeline .snake .tl-label-banner .tl-dotted .tl-compact}
 ::: {.event data-label="Q1" style="--tl-color-label: #6366f1; --tl-color-dot: #6366f1;"}
 **Discovery**

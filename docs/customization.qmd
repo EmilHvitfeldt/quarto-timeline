@@ -35,6 +35,7 @@ All visual properties are exposed as CSS custom properties on `.timeline`. Overr
 | `--tl-color-dot-bg` | `#ffffff` | Dot background color |
 | `--tl-color-label` | `#222222` | Label text color |
 | `--tl-color-content` | `currentColor` | Event content text color |
+| `--tl-color-card-bg` | `#ffffff` | Card background color (`.tl-card`) |
 | `--tl-dot-size` | `0.875rem` | Dot diameter |
 | `--tl-line-width` | `3px` | Line thickness |
 | `--tl-label-size` | `0.8em` | Label font size |
@@ -444,7 +445,7 @@ Content here.
 
 ```css
 .timeline .event.tl-card {
-  background: #ffffff;
+  background: var(--tl-color-card-bg);
   border-radius: 10px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
   padding: 0.875rem 1rem;

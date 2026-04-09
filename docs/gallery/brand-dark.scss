@@ -1,0 +1,12 @@
+/*-- scss:rules --*/
+
+/* Higher specificity than timeline.css's .timeline, so this loads last
+   but still wins. Uses Bootstrap SCSS vars from the darkly theme so
+   dot-bg and card-bg match the actual page background. */
+html .timeline {
+  --tl-color-line:    #{$brand-purple};
+  --tl-color-dot:     #{$brand-purple};
+  --tl-color-dot-bg:  #{$body-bg};
+  --tl-color-label:   #{$brand-purple};
+  --tl-color-card-bg: #{$card-bg};
+}
