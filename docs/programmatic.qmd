@@ -1,0 +1,77 @@
+---
+title: "Programmatic Generation"
+engine: knitr
+---
+
+When events come from data it is more practical to generate the divs with code than to write them by hand.
+
+## R — htmltools
+
+The [`htmltools`](https://rstudio.github.io/htmltools/) package builds HTML elements as R objects. `htmltools::div()` maps directly onto the timeline divs, and knitr renders the result inline.
+
+```{r}
+library(htmltools)
+
+phones <- as.data.frame(WorldPhones)
+
+div(
+  class = "timeline",
+  lapply(rownames(phones), function(year) {
+    div(
+      class        = "event",
+      `data-label` = year,
+      paste0("N. America: ", phones[year, "N.Amer"], "k"),
+      tags$br(),
+      paste0("Europe: ", phones[year, "Europe"], "k")
+    )
+  })
+)
+```
+
+Timeline modifier classes and event attributes work the same way — pass them through `class` and named arguments:
+
+```r
+# Modifier class on the timeline
+div(class = "timeline vertical tl-card", ...)
+
+# data-dot on an individual event
+div(class = "event", `data-label` = "Launch", `data-dot` = "\u2605", ...)
+```
+
+Empty events are an empty `div()`:
+
+```r
+div(class = "event", `data-label` = "2022")
+```
+
+## Python
+
+In a Quarto Python chunk, `print()` with `results: asis` passes the output through as raw HTML:
+
+```{python}
+#| results: asis
+
+events = [
+    ("2020", "Project Started", "Initial concept and planning phase."),
+    ("2021", "First Release",   "Launched version 1.0 to early users."),
+    ("2022", "Major Update",    "Rewrote core engine for performance."),
+    ("2023", "Scale Up",        "Reached 1 million users worldwide."),
+]
+
+items = "\n".join(
+    f'<div class="event" data-label="{year}">'
+    f"<strong>{title}</strong> - {desc}"
+    f"</div>"
+    for year, title, desc in events
+)
+
+print(f'<div class="timeline vertical">\n{items}\n</div>')
+```
+
+In a Jupyter notebook, use `IPython.display.HTML(...)` instead of `print()`.
+
+An empty event is a self-contained div with no inner content:
+
+```python
+f'<div class="event" data-label="2022"></div>'
+```

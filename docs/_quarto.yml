@@ -16,6 +16,8 @@ website:
         href: fragments.qmd
       - text: "Images & Plots"
         href: images.qmd
+      - text: "Programmatic"
+        href: programmatic.qmd
       - text: "Customization"
         href: customization.qmd
       - text: "Gallery"
