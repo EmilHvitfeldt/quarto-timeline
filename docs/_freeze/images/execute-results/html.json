@@ -1,0 +1,17 @@
+{
+  "hash": "5d135ffd4ba5d809a2eeb13959d19d75",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Images and Plots\"\nengine: knitr\necho: false\n---\n\n\n\nEvents can contain any block content — including images and code chunk output such as R plots.\n\n## Inline images\n\nPlace a standard Markdown image inside an `.event` div:\n\n::: {.timeline .vertical}\n::: {.event data-label=\"2020\"}\n**Concept sketch**\n\n![](img/concept.png)\n:::\n::: {.event data-label=\"2022\"}\n**Final design**\n\n![](img/final.png)\n:::\n:::\n\n```markdown\n::: {.timeline .vertical}\n::: {.event data-label=\"2020\"}\n**Concept sketch**\n\n![](concept.png)\n:::\n::: {.event data-label=\"2022\"}\n**Final design**\n\n![](final.png)\n:::\n:::\n```\n\nImages are constrained to the event width via `max-width: 100%`, so they scale down automatically in narrow events such as those in the horizontal layout.\n\n## R plots\n\nPlace a code chunk inside an `.event` div. Use `fig-width` and `fig-height` to control the rendered size. In the horizontal layout each event is narrow, so keep plots compact:\n\n```{{r}}\n#| fig-width: 2.5\n#| fig-height: 3\nplot(mpg ~ disp, data = mtcars, pch = 19, cex = 0.7)\n```\n\n### Horizontal\n\n::: timeline\n::: {.event data-label=\"Displacement\"}\n**MPG vs displacement**\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](images_files/figure-html/unnamed-chunk-1-1.png){width=240}\n:::\n:::\n\n:::\n::: {.event data-label=\"Weight\"}\n**HP vs weight**\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](images_files/figure-html/unnamed-chunk-2-1.png){width=240}\n:::\n:::\n\n:::\n::: {.event data-label=\"Distribution\"}\n**MPG distribution**\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](images_files/figure-html/unnamed-chunk-3-1.png){width=240}\n:::\n:::\n\n:::\n:::\n\n````markdown\n::: timeline\n::: {.event data-label=\"Displacement\"}\n**MPG vs displacement**\n\n```{{r}}\n#| fig-width: 2.5\n#| fig-height: 3\nplot(mpg ~ disp, data = mtcars, pch = 19, cex = 0.7)\n```\n:::\n...\n:::\n````\n\n### Vertical\n\nVertical events span the full content width, so larger plots fit well:\n\n::: {.timeline .vertical}\n::: {.event data-label=\"Step 1\"}\n**Displacement vs MPG**\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](images_files/figure-html/unnamed-chunk-4-1.png){width=480}\n:::\n:::\n\n:::\n::: {.event data-label=\"Step 2\"}\n**Weight vs HP**\n\n\n::: {.cell}\n::: {.cell-output-display}\n![](images_files/figure-html/unnamed-chunk-5-1.png){width=480}\n:::\n:::\n\n:::\n:::\n\n````markdown\n::: {.timeline .vertical}\n::: {.event data-label=\"Step 1\"}\n**Displacement vs MPG**\n\n```{{r}}\n#| fig-width: 5\n#| fig-height: 2.5\nplot(mpg ~ disp, data = mtcars, pch = 19, cex = 0.7)\n```\n:::\n...\n:::\n````\n\n## RevealJS sizing\n\nIn RevealJS presentations, events in the horizontal layout are wider than in HTML documents (a 1280 × 720 slide with three events gives each event ~413 px). Scale up accordingly:\n\n```{{r}}\n#| fig-width: 5\n#| fig-height: 3\nplot(mpg ~ disp, data = mtcars, pch = 19, cex = 0.7)\n```\n\nFor vertical layouts on a RevealJS slide, events span the full slide width, so even wider plots work well:\n\n```{{r}}\n#| fig-width: 8\n#| fig-height: 3\nplot(mpg ~ disp, data = mtcars, pch = 19, cex = 0.7)\n```\n",
+    "supporting": [
+      "images_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

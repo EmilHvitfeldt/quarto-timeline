@@ -1,2 +1,6 @@
-/.quarto/
+/.quarto/idx/
+/.quarto/xref/
+/.quarto/preview/
+/.quarto/project-cache/
+/.quarto/quarto-session-temp*/
 **/*.quarto_ipynb
