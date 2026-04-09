@@ -9,7 +9,7 @@
   --tl-color-dot-bg:  #ffffff;
   --tl-color-label:   #222222;
   --tl-color-content: currentColor;
-  --tl-dot-size:      14px;
+  --tl-dot-size:      0.875rem;
   --tl-line-width:    3px;
   --tl-label-size:    0.8em;
   --tl-content-size:  1em;
@@ -320,7 +320,7 @@
   align-items: stretch;
   padding: 0;
   gap: 0;
-  --tl-snake-radius: 30px;
+  --tl-snake-radius: 1.875rem;
 }
 
 .timeline.snake::before {
@@ -522,20 +522,24 @@
 
 .timeline.tl-compact {
   --tl-gap:          1rem;
-  --tl-dot-size:     10px;
+  --tl-dot-size:     0.625rem;
   --tl-label-size:   0.7em;
   --tl-content-size: 0.85em;
 }
 
 .timeline.tl-spacious {
   --tl-gap:          3.5rem;
-  --tl-dot-size:     18px;
+  --tl-dot-size:     1.125rem;
   --tl-label-size:   0.9em;
   --tl-content-size: 1.1em;
 }
 
 
 /* ---- Dot icon: data-dot attribute -------------------------- */
+
+.timeline .event[data-dot] {
+  --tl-dot-size: 2rem;
+}
 
 .timeline .event[data-dot]::after {
   content: attr(data-dot);

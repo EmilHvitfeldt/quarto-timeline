@@ -35,13 +35,13 @@ All visual properties are exposed as CSS custom properties on `.timeline`. Overr
 | `--tl-color-dot-bg` | `#ffffff` | Dot background color |
 | `--tl-color-label` | `#222222` | Label text color |
 | `--tl-color-content` | `currentColor` | Event content text color |
-| `--tl-dot-size` | `14px` | Dot diameter |
+| `--tl-dot-size` | `0.875rem` | Dot diameter |
 | `--tl-line-width` | `3px` | Line thickness |
 | `--tl-label-size` | `0.8em` | Label font size |
 | `--tl-content-size` | `1em` | Content font size |
 | `--tl-gap` | `2rem` | Space between events |
 | `--tl-event-width` | `320px` | Fixed event width in pan modes |
-| `--tl-snake-radius` | `30px` | Corner radius of snake path turns |
+| `--tl-snake-radius` | `1.875rem` | Corner radius of snake path turns |
 
 **Inline override** (single timeline):
 
@@ -276,14 +276,14 @@ Default round dot.
 ```css
 .timeline.tl-compact {
   --tl-gap:          1rem;
-  --tl-dot-size:     10px;
+  --tl-dot-size:     0.625rem;
   --tl-label-size:   0.7em;
   --tl-content-size: 0.85em;
 }
 
 .timeline.tl-spacious {
   --tl-gap:          3.5rem;
-  --tl-dot-size:     18px;
+  --tl-dot-size:     1.125rem;
   --tl-label-size:   0.9em;
   --tl-content-size: 1.1em;
 }
@@ -390,12 +390,16 @@ Infrastructure overhaul.
 ::: {.event data-label="Deploy" data-dot="▲"}
 ```
 
-Works with any single character or number. The dot size is fixed by `--tl-dot-size`; content is centered and clipped within it.
+Works with any single character or number. The dot automatically enlarges to `2em` when `data-dot` is set, so it scales with the surrounding font size. Override `--tl-dot-size` on the event or timeline if you need a different size.
 
 <details>
 <summary>CSS source</summary>
 
 ```css
+.timeline .event[data-dot] {
+  --tl-dot-size: 2rem;
+}
+
 .timeline .event[data-dot]::after {
   content: attr(data-dot);
   display: flex;

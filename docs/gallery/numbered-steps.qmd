@@ -10,7 +10,7 @@ title: "Numbered Steps"
 .ex-steps .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
 </style>
 
-::: {.timeline .vertical .tl-compact .ex-steps}
+::: {.timeline .vertical .tl-compact .ex-steps style="--tl-dot-size: 32px;"}
 ::: {.event data-label="Install" data-dot="1"}
 Run `quarto add EmilHvitfeldt/quarto-timeline` in your project directory.
 :::
@@ -30,7 +30,7 @@ Run `quarto render` and open the output in your browser.
 .ex-steps .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
 </style>
 
-::: {.timeline .vertical .tl-compact .ex-steps}
+::: {.timeline .vertical .tl-compact .ex-steps style="--tl-dot-size: 32px;"}
 ::: {.event data-label="Install" data-dot="1"}
 Run `quarto add EmilHvitfeldt/quarto-timeline` in your project directory.
 :::
