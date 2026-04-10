@@ -6,9 +6,8 @@ title: "Highlighted Milestone"
 
 <style>
 .ex-milestone .event.highlight {
-  --tl-color-dot:    #dc2626;
-  --tl-color-dot-bg: #dc2626;
-  --tl-color-label:  #dc2626;
+  --tl-color-accent:   #dc2626;
+  --tl-color-dot-bg:   #dc2626;
 }
 .ex-milestone .event.highlight::after {
   width:  calc(var(--tl-dot-size) * 1.6);
@@ -35,14 +34,13 @@ Version 1.1 ships with the first set of community-requested features.
 :::
 :::
 
-`.vertical` with a user-defined `.highlight` class that enlarges the dot and changes its color for a single event. Everything else uses the default styling.
+`.vertical` with a user-defined `.highlight` class that enlarges the dot and changes its color for a single event. `--tl-color-accent` sets both the label and dot border color; `--tl-color-dot-bg` fills the dot solid. Everything else uses the default styling.
 
 ````markdown
 <style>
 .ex-milestone .event.highlight {
-  --tl-color-dot:    #dc2626;
-  --tl-color-dot-bg: #dc2626;
-  --tl-color-label:  #dc2626;
+  --tl-color-accent:   #dc2626;
+  --tl-color-dot-bg:   #dc2626;
 }
 .ex-milestone .event.highlight::after {
   width:  calc(var(--tl-dot-size) * 1.6);

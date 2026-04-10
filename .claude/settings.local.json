@@ -18,7 +18,12 @@
       "WebFetch(domain:quarto.org)",
       "Bash(grep -l 'tl-color-line' docs/_site/site_libs/bootstrap/*.css)",
       "Bash(grep -l 'tl-color-line' docs/_site/site_libs/**/*.css)",
-      "Bash(cat .github/workflows/*.yml)"
+      "Bash(cat .github/workflows/*.yml)",
+      "Bash(mkdir -p /tmp/timeline-zip)",
+      "Bash(unzip -o ~/Downloads/timeline-custom-counter-with-gradient-border.zip -d /tmp/timeline-zip)",
+      "Bash(ls:*)",
+      "Bash(unzip -o ~/Downloads/css3-timeline.zip)",
+      "Bash(unzip -o ~/Downloads/vertical-timeline.zip)"
     ]
   }
 }

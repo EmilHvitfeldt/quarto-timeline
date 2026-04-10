@@ -60,18 +60,14 @@ toc: false
 ::: gallery-card
 ::: gallery-preview
 
-<style>
-.ex-co-prev .event { --tl-color-dot: var(--tl-color-label); }
-</style>
-
-::: {.timeline .vertical .tl-label-banner .tl-compact .ex-co-prev}
-::: {.event data-label="2002" style="--tl-color-label: #41516C;"}
+::: {.timeline .vertical .tl-label-banner .tl-compact}
+::: {.event data-label="2002" style="--tl-color-accent: #41516C;"}
 **Founding**
 :::
-::: {.event data-label="2007" style="--tl-color-label: #E24A68;"}
+::: {.event data-label="2007" style="--tl-color-accent: #E24A68;"}
 **First Product**
 :::
-::: {.event data-label="2012" style="--tl-color-label: #FBCA3E;"}
+::: {.event data-label="2012" style="--tl-color-accent: #FBCA3E;"}
 **Series B**
 :::
 :::
@@ -85,11 +81,7 @@ toc: false
 ::: gallery-card
 ::: gallery-preview
 
-<style>
-.ex-st-prev .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
-</style>
-
-::: {.timeline .vertical .tl-compact .ex-st-prev}
+::: {.timeline .vertical .tl-compact style="--tl-color-accent: #2563eb;"}
 ::: {.event data-label="Install" data-dot="1"}
 Add the extension.
 :::
@@ -183,10 +175,252 @@ Run quarto render.
 ::: gallery-preview
 
 <style>
+.ex-gc-prev {
+  --tl-snake-radius: 0;
+  --tl-dot-size: 1.5rem;
+  --tl-color-dot: #34435E;
+  --tl-color-dot-bg: #34435E;
+  --tl-color-label: #34435E;
+  --tl-dot-icon-color: white;
+}
+.ex-gc-prev .event {
+  color: #34435E;
+  border-image: linear-gradient(to right, #743ad5 0%, #d53a9d 100%) 1;
+}
+.ex-gc-prev .event::before { visibility: hidden; }
+</style>
+
+::: {.timeline .snake .tl-compact .ex-gc-prev}
+::: {.event data-label="1" data-dot="1"}
+Scope and stakeholder alignment.
+:::
+::: {.event data-label="2" data-dot="2"}
+Iterative development sprints.
+:::
+::: {.event data-label="3" data-dot="3"}
+Staged rollout and monitoring.
+:::
+:::
+
+:::
+::: gallery-card-label
+[Gradient Counter](gallery/gradient-counter.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-daf-prev {
+  background: #1e1e2f;
+  padding: 0.5rem;
+  border-radius: 4px;
+  color: white;
+  --tl-color-line: #27293d;
+  --tl-line-width: 3px;
+  --tl-color-card-bg: #27293d;
+}
+.ex-daf-prev.vertical .event.tl-card::before {
+  position: static;
+  display: inline-block;
+  background: var(--tl-color-label);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 2px;
+  font-size: 0.6rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.05em;
+}
+.ex-daf-prev .event[data-dot]::after {
+  background: var(--tl-color-dot-bg);
+  border-color: var(--tl-color-dot);
+  color: white;
+}
+</style>
+
+::: {.timeline .vertical .tl-compact .ex-daf-prev}
+::: {.event data-label="Primary" data-dot="😉" .tl-card style="--tl-color-label: #1d8cf8; --tl-color-dot: #1d8cf8; --tl-color-dot-bg: #1d8cf8;"}
+Short notification text.
+:::
+::: {.event data-label="Danger" data-dot="😍" .tl-card style="--tl-color-label: #fd5d93; --tl-color-dot: #fd5d93; --tl-color-dot-bg: #fd5d93;"}
+Short notification text.
+:::
+::: {.event data-label="Success" data-dot="😂" .tl-card style="--tl-color-label: #00bf9a; --tl-color-dot: #00bf9a; --tl-color-dot-bg: #00bf9a;"}
+Short notification text.
+:::
+:::
+
+:::
+::: gallery-card-label
+[Dark Activity Feed](gallery/dark-activity-feed.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-sst-prev {
+  --tl-color-line:   #006E51;
+  --tl-color-dot:    #006E51;
+  --tl-color-dot-bg: #ffffff;
+  --tl-color-label:  #006E51;
+}
+.ex-sst-prev .event.tl-card {
+  background: #F6D155;
+  box-shadow: none;
+  border: 2px solid #006E51;
+}
+.ex-sst-prev .event.tl-card strong { color: #006E51; }
+</style>
+
+::: {.timeline .vertical-alt .tl-pill .tl-label-opposite .tl-dot-center .tl-compact .ex-sst-prev}
+::: {.event data-label="Dec" .tl-card}
+**Item A**
+:::
+::: {.event data-label="Oct" .tl-card}
+**Item B**
+:::
+::: {.event data-label="Jul" .tl-card}
+**Item C**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Alternating Pill](gallery/alternating-pill.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-flag-prev {
+  --tl-color-line:   #d5d5d5;
+  --tl-color-label:  #00c4f3;
+  --tl-color-dot-bg: #00c4f3;
+}
+.timeline.vertical-alt.ex-flag-prev::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%, #d5d5d5 8%, #d5d5d5 92%, transparent 100%
+  );
+}
+.ex-flag-prev .event.tl-card > p:first-child {
+  position: relative;
+}
+.ex-flag-prev.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #ffffff;
+}
+.ex-flag-prev.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #ffffff;
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .tl-diamond .tl-label-badge .tl-compact .ex-flag-prev}
+::: {.event data-label="Feb 2015" .tl-card}
+**Lorem ipsum.**
+:::
+::: {.event data-label="Dec 2014" .tl-card}
+**Lorem ipsum Anim.**
+:::
+::: {.event data-label="Jul 2014" .tl-card}
+**Lorem Occaecat.**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Flag Timeline](gallery/flag-timeline.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
+.ex-mat-prev {
+  --tl-color-line:   #C5CAE9;
+  --tl-color-dot:    #3F51B5;
+  --tl-color-dot-bg: #3F51B5;
+  --tl-line-width:   5px;
+  --tl-dot-size:     1.875rem;
+}
+.ex-mat-prev .event::before { display: none; }
+.ex-mat-prev .event.tl-card {
+  --tl-color-card-bg: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
+}
+.ex-mat-prev .event.tl-card > p:first-child { position: relative; font-weight: 600; }
+.ex-mat-prev.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 14px);
+  top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #f5f5f5;
+}
+.ex-mat-prev.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 14px);
+  top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid #f5f5f5;
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .tl-compact .ex-mat-prev}
+::: {.event .tl-card}
+**Founding**
+:::
+::: {.event .tl-card}
+**Expansion**
+:::
+::: {.event .tl-card}
+**Milestones**
+:::
+:::
+
+:::
+::: gallery-card-label
+[Material Timeline](gallery/material-timeline.html)
+:::
+:::
+
+::: gallery-card
+::: gallery-preview
+
+<style>
 .ex-hl-prev .event.highlight {
-  --tl-color-dot:    #dc2626;
+  --tl-color-accent: #dc2626;
   --tl-color-dot-bg: #dc2626;
-  --tl-color-label:  #dc2626;
 }
 .ex-hl-prev .event.highlight::after {
   width:  calc(var(--tl-dot-size) * 1.6);

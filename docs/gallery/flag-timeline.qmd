@@ -1,0 +1,141 @@
+---
+title: "Flag Timeline"
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-flag {
+  --tl-color-line:   #d5d5d5;
+  --tl-color-label:  #00c4f3;
+  --tl-color-dot-bg: #00c4f3;
+}
+
+/* Gradient fade at top and bottom of the center line */
+.timeline.vertical-alt.ex-flag::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #d5d5d5 8%,
+    #d5d5d5 92%,
+    transparent 100%
+  );
+}
+
+/* Anchor the first <p> so the arrow pseudo-element can be placed */
+.ex-flag .event.tl-card > p:first-child {
+  position: relative;
+}
+
+/* Speech-bubble arrow on left-side (odd) cards, pointing right toward center */
+.ex-flag.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--tl-color-card-bg, #ffffff);
+}
+
+/* Speech-bubble arrow on right-side (even) cards, pointing left toward center */
+.ex-flag.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--tl-color-card-bg, #ffffff);
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .tl-diamond .tl-label-badge .ex-flag}
+::: {.event data-label="Feb 2015" .tl-card}
+**Lorem ipsum.**
+
+Lorem ipsum Nisi labore aute do aute culpa magna nulla voluptate exercitation deserunt proident.
+:::
+::: {.event data-label="Dec 2014" .tl-card}
+**Lorem ipsum Anim.**
+
+Lorem ipsum In ut sit in dolor nisi ex magna eu anim anim tempor dolore aliquip enim cupidatat laborum dolore.
+:::
+::: {.event data-label="July 2014" .tl-card}
+**Lorem Occaecat.**
+
+Lorem ipsum Minim labore Ut cupidatat quis qui deserunt proident fugiat pariatur cillum cupidatat reprehenderit.
+:::
+:::
+
+`.vertical-alt` with `.tl-diamond` and `.tl-label-badge`. The gradient center line and speech-bubble arrows are custom CSS: the line uses a `linear-gradient` on `::before`, and the arrow is a zero-size element with CSS borders on `p:first-child::after` — the only pseudo-element slot not already claimed by the framework.
+
+````markdown
+<style>
+.ex-flag {
+  --tl-color-line:   #d5d5d5;
+  --tl-color-label:  #00c4f3;
+  --tl-color-dot-bg: #00c4f3;
+}
+
+/* Gradient fade on the center line */
+.timeline.vertical-alt.ex-flag::before {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%, #d5d5d5 8%, #d5d5d5 92%, transparent 100%
+  );
+}
+
+/* Anchor for arrow positioning */
+.ex-flag .event.tl-card > p:first-child {
+  position: relative;
+}
+
+/* Arrow on left-side cards pointing right */
+.ex-flag.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid var(--tl-color-card-bg, #ffffff);
+}
+
+/* Arrow on right-side cards pointing left */
+.ex-flag.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 8px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid var(--tl-color-card-bg, #ffffff);
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .tl-diamond .tl-label-badge .ex-flag}
+::: {.event data-label="Feb 2015" .tl-card}
+**Lorem ipsum.**
+
+Lorem ipsum Nisi labore aute do aute culpa.
+:::
+::: {.event data-label="Dec 2014" .tl-card}
+**Lorem ipsum Anim.**
+
+Lorem ipsum In ut sit in dolor nisi ex magna.
+:::
+:::
+````

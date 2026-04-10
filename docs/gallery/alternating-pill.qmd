@@ -1,0 +1,98 @@
+---
+title: "Alternating Pill"
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-sst {
+  --tl-color-line:   #006E51;
+  --tl-color-dot:    #006E51;
+  --tl-color-dot-bg: #ffffff;
+  --tl-color-label:  #006E51;
+}
+
+.ex-sst .event.tl-card {
+  background: #F6D155;
+  box-shadow: none;
+  border: 2px solid #006E51;
+}
+
+.ex-sst .event::before {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.ex-sst .event.tl-card strong {
+  color: #006E51;
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-pill .tl-label-opposite .tl-dot-center .ex-sst style="--tl-dot-size: 1rem;"}
+::: {.event data-label="15 Dec" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+::: {.event data-label="22 Oct" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+::: {.event data-label="10 Jul" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+::: {.event data-label="18 May" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+::: {.event data-label="10 Feb" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+::: {.event data-label="01 Jan" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit. Aliquam odio dolor, id luctus erat sagittis non. Ut blandit semper pretium.
+:::
+:::
+
+`.vertical-alt` with `.tl-pill`, `.tl-label-opposite`, and `.tl-dot-center`. The pill shape and label placement are handled entirely by modifier classes — only the color scheme and card background require custom CSS.
+
+````markdown
+<style>
+.ex-sst {
+  --tl-color-line:   #006E51;
+  --tl-color-dot:    #006E51;
+  --tl-color-dot-bg: #ffffff;
+  --tl-color-label:  #006E51;
+}
+.ex-sst .event.tl-card {
+  background: #F6D155;
+  box-shadow: none;
+  border: 2px solid #006E51;
+}
+.ex-sst .event::before {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.ex-sst .event.tl-card strong { color: #006E51; }
+</style>
+
+::: {.timeline .vertical-alt .tl-pill .tl-label-opposite .tl-dot-center .ex-sst style="--tl-dot-size: 1rem;"}
+::: {.event data-label="15 Dec" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit.
+:::
+::: {.event data-label="22 Oct" .tl-card}
+**Lorem ipsum dolor sit amet**
+
+Lorem ipsum dolor sit amet elit.
+:::
+:::
+````

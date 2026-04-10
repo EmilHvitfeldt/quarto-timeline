@@ -4,20 +4,22 @@
 
 /* ---- CSS Custom Properties --------------------------------- */
 .timeline {
-  --tl-color-line:    #222222;
-  --tl-color-dot:     #222222;
-  --tl-color-dot-bg:  #ffffff;
-  --tl-color-label:   #222222;
-  --tl-color-content: currentColor;
-  --tl-color-card-bg: #ffffff;
-  --tl-dot-size:      0.875rem;
-  --tl-line-width:    3px;
-  --tl-label-size:    0.8em;
-  --tl-content-size:  1em;
-  --tl-gap:           2rem;
-  --tl-event-width:   320px;
-  --tl-empty-height:  3rem;
-  --tl-panel-width:   90px;
+  --tl-color-accent:   initial;
+  --tl-color-line:     #222222;
+  --tl-color-dot:      #222222;
+  --tl-color-dot-bg:   #ffffff;
+  --tl-color-label:    #222222;
+  --tl-color-content:  currentColor;
+  --tl-color-card-bg:  #ffffff;
+  --tl-dot-size:       0.875rem;
+  --tl-dot-icon-color: currentColor;
+  --tl-line-width:     3px;
+  --tl-label-size:     0.8em;
+  --tl-content-size:   1em;
+  --tl-gap:            2rem;
+  --tl-event-width:    320px;
+  --tl-empty-height:   3rem;
+  --tl-panel-width:    90px;
 }
 
 /* ---- Shared base ------------------------------------------- */
@@ -45,7 +47,7 @@
   content: attr(data-label);
   font-size: var(--tl-label-size);
   font-weight: bold;
-  color: var(--tl-color-label);
+  color: var(--tl-color-accent, var(--tl-color-label));
 }
 
 /* Dot — shared, overridden per layout */
@@ -55,7 +57,7 @@
   width: var(--tl-dot-size);
   height: var(--tl-dot-size);
   background: var(--tl-color-dot-bg);
-  border: 3px solid var(--tl-color-dot);
+  border: 3px solid var(--tl-color-accent, var(--tl-color-dot));
   border-radius: 50%;
 }
 
@@ -595,6 +597,7 @@
   font-size: calc(var(--tl-dot-size) * 0.6);
   line-height: 1;
   overflow: hidden;
+  color: var(--tl-dot-icon-color);
 }
 
 
@@ -602,10 +605,31 @@
 
 .timeline.tl-label-banner .event::before {
   color: white;
-  background: var(--tl-color-label);
+  background: var(--tl-color-accent, var(--tl-color-label));
   padding: 0.4em 1em;
   margin-bottom: 0.5rem;
   border-radius: 2em;
+  white-space: nowrap;
+}
+
+
+/* ---- Label badge: .tl-label-badge ------------------------- */
+/* Compact rectangular badge, sized to the label text.
+   Unlike .tl-label-banner (full-width pill), this stays inline.
+   Dot color defaults to --tl-color-label so per-event colors apply. */
+
+.timeline.tl-label-badge {
+  --tl-color-dot: var(--tl-color-label);
+}
+
+.timeline.tl-label-badge .event::before {
+  display: inline-block;
+  color: white;
+  background: var(--tl-color-accent, var(--tl-color-label));
+  padding: 0.25em 0.6em;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-size: calc(var(--tl-label-size) * 0.9);
   white-space: nowrap;
 }
 
@@ -679,7 +703,7 @@
   justify-content: center;
   grid-column: 1;
   grid-row: 1 / span 20;
-  background: var(--tl-color-label);
+  background: var(--tl-color-accent, var(--tl-color-label));
   color: #fff;
   margin-bottom: 0;
   padding: 1rem 0.5rem;
@@ -697,6 +721,45 @@
 
 .timeline.vertical.tl-label-panel .event.tl-card > *:last-child {
   padding-bottom: 0.75rem;
+}
+
+
+/* ---- Label opposite: .tl-label-opposite ------------------- */
+/* In vertical-alt, moves each event's label to the opposite side
+   of the center line from its card, vertically centered.
+   Pair with .tl-dot-center for consistent alignment. */
+
+.timeline.vertical-alt.tl-label-opposite .event::before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.timeline.vertical-alt.tl-label-opposite .event:nth-child(odd)::before {
+  left: calc(100% + 30px + var(--tl-dot-size) * 3);
+  right: auto;
+  text-align: left;
+}
+
+.timeline.vertical-alt.tl-label-opposite .event:nth-child(even)::before {
+  right: calc(100% + 30px + var(--tl-dot-size) * 3);
+  left: auto;
+  text-align: right;
+}
+
+
+/* ---- Pill shape: .tl-pill --------------------------------- */
+/* In vertical-alt, rounds the inward-facing edge of each event
+   so cards curve toward the center line. */
+
+.timeline.vertical-alt.tl-pill .event:nth-child(odd) {
+  border-radius: 0 500px 500px 0;
+}
+
+.timeline.vertical-alt.tl-pill .event:nth-child(even) {
+  border-radius: 500px 0 0 500px;
 }
 
 

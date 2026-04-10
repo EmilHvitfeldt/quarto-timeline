@@ -4,11 +4,7 @@ title: "Numbered Steps"
 
 [← Gallery](../gallery.html)
 
-<style>
-.ex-steps .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
-</style>
-
-::: {.timeline .vertical .tl-compact .ex-steps style="--tl-dot-size: 32px;"}
+::: {.timeline .vertical .tl-compact style="--tl-dot-size: 32px; --tl-color-accent: #2563eb;"}
 ::: {.event data-label="Install" data-dot="1"}
 Run `quarto add EmilHvitfeldt/quarto-timeline` in your project directory.
 :::
@@ -23,14 +19,10 @@ Run `quarto render` and open the output in your browser.
 :::
 :::
 
-`.vertical` with `.tl-compact` and `data-dot` for step numbers. A shared CSS class sets a consistent accent color across all events.
+`.vertical` with `.tl-compact` and `data-dot` for step numbers. `--tl-color-accent` on the timeline sets a consistent color for both labels and dot borders across all events.
 
 ````markdown
-<style>
-.ex-steps .event { --tl-color-dot: #2563eb; --tl-color-label: #2563eb; }
-</style>
-
-::: {.timeline .vertical .tl-compact .ex-steps style="--tl-dot-size: 32px;"}
+::: {.timeline .vertical .tl-compact style="--tl-dot-size: 32px; --tl-color-accent: #2563eb;"}
 ::: {.event data-label="Install" data-dot="1"}
 Run `quarto add EmilHvitfeldt/quarto-timeline` in your project directory.
 :::

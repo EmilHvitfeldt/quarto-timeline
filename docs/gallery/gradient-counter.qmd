@@ -1,0 +1,79 @@
+---
+title: "Gradient Counter"
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-grad-counter {
+  --tl-snake-radius: 0;
+  --tl-dot-size: 2rem;
+  --tl-color-dot: #34435E;
+  --tl-color-dot-bg: #34435E;
+  --tl-color-label: #34435E;
+  --tl-dot-icon-color: white;
+}
+
+.ex-grad-counter .event {
+  color: #34435E;
+  border-image: linear-gradient(to right, #743ad5 0%, #d53a9d 100%) 1;
+}
+
+.ex-grad-counter .event::before {
+  visibility: hidden;
+}
+</style>
+
+::: {.timeline .snake .ex-grad-counter}
+::: {.event data-label="1" data-dot="1"}
+Requirements gathering and stakeholder alignment. Define scope, deliverables, and success criteria before any work begins.
+:::
+::: {.event data-label="2" data-dot="2"}
+Wireframes, prototypes, and system design. Validate assumptions with users before committing to implementation.
+:::
+::: {.event data-label="3" data-dot="3"}
+Iterative development with continuous integration. Weekly demos keep stakeholders aligned and surface blockers early.
+:::
+::: {.event data-label="4" data-dot="4"}
+Staged rollout with feature flags and monitoring. Structured feedback collection drives the next iteration.
+:::
+:::
+
+`.snake` layout with `data-dot` for numbered counters and `border-image` for gradient-colored path segments. Setting `--tl-snake-radius: 0` removes the rounded corners, which is required for `border-image` to render correctly. The label is hidden with `visibility: hidden` but kept in the markup to separate events. `--tl-dot-icon-color: white` keeps the counter numbers readable on the dark dot background.
+
+````markdown
+<style>
+.ex-grad-counter {
+  --tl-snake-radius: 0;
+  --tl-dot-size: 2rem;
+  --tl-color-dot: #34435E;
+  --tl-color-dot-bg: #34435E;
+  --tl-color-label: #34435E;
+  --tl-dot-icon-color: white;
+}
+
+.ex-grad-counter .event {
+  color: #34435E;
+  border-image: linear-gradient(to right, #743ad5 0%, #d53a9d 100%) 1;
+}
+
+.ex-grad-counter .event::before {
+  visibility: hidden;
+}
+</style>
+
+::: {.timeline .snake .ex-grad-counter}
+::: {.event data-label="1" data-dot="1"}
+Requirements gathering and stakeholder alignment. Define scope, deliverables, and success criteria before any work begins.
+:::
+::: {.event data-label="2" data-dot="2"}
+Wireframes, prototypes, and system design. Validate assumptions with users before committing to implementation.
+:::
+::: {.event data-label="3" data-dot="3"}
+Iterative development with continuous integration. Weekly demos keep stakeholders aligned and surface blockers early.
+:::
+::: {.event data-label="4" data-dot="4"}
+Staged rollout with feature flags and monitoring. Structured feedback collection drives the next iteration.
+:::
+:::
+````

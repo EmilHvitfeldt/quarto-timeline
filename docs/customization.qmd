@@ -15,9 +15,12 @@ Customization works at two levels: classes on `.timeline` that affect the whole 
 | `.tl-none` | No dots |
 | `.tl-compact` | Tighter spacing and smaller text |
 | `.tl-spacious` | Looser spacing and larger text |
-| `.tl-label-banner` | Label as colored pill banner |
+| `.tl-label-banner` | Label as colored full-width pill banner |
+| `.tl-label-badge` | Label as a compact colored rectangular badge |
 | `.tl-dot-center` | Vertically center the dot on each event (vertical layouts) |
 | `.tl-label-panel` | Label as a full-height colored left panel on `.tl-card` events |
+| `.tl-label-opposite` | Move labels to the opposite side of the center line (`.vertical-alt` only) |
+| `.tl-pill` | Pill-shaped events curving toward the center line (`.vertical-alt` only) |
 
 ### Event classes and attributes
 
@@ -32,13 +35,15 @@ All visual properties are exposed as CSS custom properties on `.timeline`. Overr
 
 | Property | Default | Controls |
 |---|---|---|
+| `--tl-color-accent` | *(unset)* | Per-event shorthand: sets dot border and label/badge color at once |
 | `--tl-color-line` | `#222222` | Timeline line color |
-| `--tl-color-dot` | `#222222` | Dot border color |
+| `--tl-color-dot` | `#222222` | Dot border color (overridden by `--tl-color-accent` when set) |
 | `--tl-color-dot-bg` | `#ffffff` | Dot background color |
-| `--tl-color-label` | `#222222` | Label text color |
+| `--tl-color-label` | `#222222` | Label text color (overridden by `--tl-color-accent` when set) |
 | `--tl-color-content` | `currentColor` | Event content text color |
 | `--tl-color-card-bg` | `#ffffff` | Card background color (`.tl-card`) |
 | `--tl-dot-size` | `0.875rem` | Dot diameter |
+| `--tl-dot-icon-color` | `currentColor` | Icon/character color inside `data-dot` dots |
 | `--tl-line-width` | `3px` | Line thickness |
 | `--tl-label-size` | `0.8em` | Label font size |
 | `--tl-content-size` | `1em` | Content font size |
@@ -418,10 +423,63 @@ Works with all vertical layouts and snake.
 ```css
 .timeline.tl-label-banner .event::before {
   color: white;
-  background: var(--tl-color-label);
+  background: var(--tl-color-accent, var(--tl-color-label));
   padding: 0.4em 1em;
   margin-bottom: 0.5rem;
   border-radius: 2em;
+  white-space: nowrap;
+}
+```
+
+</details>
+
+---
+
+## Label badge
+
+`.tl-label-badge` turns the label into a compact colored rectangular badge, sized to the text. Unlike `.tl-label-banner` (which stretches full-width), the badge only wraps the label. The dot color automatically follows `--tl-color-label`.
+
+::: {.timeline .vertical .tl-label-badge}
+::: {.event data-label="2020" style="--tl-color-label: #41516C;"}
+**Founding** — The company is incorporated.
+:::
+::: {.event data-label="2024" style="--tl-color-label: #E24A68;"}
+**Series B** — Raised $20M to expand.
+:::
+::: {.event data-label="2025" style="--tl-color-label: #24b47e;"}
+**Launch** — Product ships to all users.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-label-badge}
+::: {.event data-label="2020" style="--tl-color-label: #41516C;"}
+**Founding** — The company is incorporated.
+:::
+::: {.event data-label="2024" style="--tl-color-label: #E24A68;"}
+**Series B** — Raised $20M to expand.
+:::
+:::
+```
+
+Use `--tl-color-accent` as a shorthand to set both the badge color and dot border at once (see [Accent color](#accent-color) below).
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.tl-label-badge {
+  --tl-color-dot: var(--tl-color-label);
+}
+
+.timeline.tl-label-badge .event::before {
+  display: inline-block;
+  color: white;
+  background: var(--tl-color-accent, var(--tl-color-label));
+  padding: 0.25em 0.6em;
+  margin-bottom: 0.5rem;
+  border-radius: 4px;
+  font-size: calc(var(--tl-label-size) * 0.9);
   white-space: nowrap;
 }
 ```
@@ -452,7 +510,26 @@ Infrastructure overhaul.
 ::: {.event data-label="Deploy" data-dot="▲"}
 ```
 
-Works with any single character or number. The dot automatically enlarges to `2em` when `data-dot` is set, so it scales with the surrounding font size. Override `--tl-dot-size` on the event or timeline if you need a different size.
+Works with any single character or number. The dot automatically enlarges to `2rem` when `data-dot` is set. Override `--tl-dot-size` on the event or timeline if you need a different size.
+
+Use `--tl-dot-icon-color` to control the icon/text color inside the dot independently of the dot border or the event's text color. This is particularly useful when the dot has a solid colored background:
+
+::: {.timeline .vertical style="--tl-dot-icon-color: white;"}
+::: {.event data-label="Deploy" data-dot="▲" style="--tl-color-accent: #2563eb; --tl-color-dot-bg: #2563eb;"}
+Infrastructure overhaul complete.
+:::
+::: {.event data-label="Launch" data-dot="★" style="--tl-color-accent: #dc2626; --tl-color-dot-bg: #dc2626;"}
+Product ships to all users.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical style="--tl-dot-icon-color: white;"}
+::: {.event data-label="Deploy" data-dot="▲" style="--tl-color-accent: #2563eb; --tl-color-dot-bg: #2563eb;"}
+Infrastructure overhaul complete.
+:::
+:::
+```
 
 <details>
 <summary>CSS source</summary>
@@ -470,10 +547,39 @@ Works with any single character or number. The dot automatically enlarges to `2e
   font-size: calc(var(--tl-dot-size) * 0.6);
   line-height: 1;
   overflow: hidden;
+  color: var(--tl-dot-icon-color);
 }
 ```
 
 </details>
+
+---
+
+## Accent color {#accent-color}
+
+`--tl-color-accent` is a per-event shorthand that sets both the dot border color and the label/badge color at once. It applies directly in the CSS of those elements, so it works reliably without needing to set `--tl-color-dot` and `--tl-color-label` separately.
+
+::: {.timeline .vertical .tl-label-badge}
+::: {.event data-label="Primary" data-dot="●" style="--tl-color-accent: #1d8cf8; --tl-color-dot-bg: #1d8cf8;"}
+One property sets both dot and badge color.
+:::
+::: {.event data-label="Success" data-dot="●" style="--tl-color-accent: #00bf9a; --tl-color-dot-bg: #00bf9a;"}
+Works on any vertical layout with `.tl-label-badge`.
+:::
+::: {.event data-label="Warning" data-dot="●" style="--tl-color-accent: #ff8d72; --tl-color-dot-bg: #ff8d72;"}
+Use `--tl-color-dot-bg` separately for solid dots.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical .tl-label-badge}
+::: {.event data-label="Primary" data-dot="●" style="--tl-color-accent: #1d8cf8; --tl-color-dot-bg: #1d8cf8;"}
+One property sets both dot and badge color.
+:::
+:::
+```
+
+`--tl-color-accent` works with any label modifier (`.tl-label-banner`, `.tl-label-badge`, `.tl-label-panel`) and with the plain label color. It does **not** set `--tl-color-dot-bg` — set that separately if you want a solid-filled dot.
 
 ---
 
@@ -618,6 +724,122 @@ Control the panel width with `--tl-panel-width` (default `90px`):
 
 ---
 
+## Label opposite
+
+`.tl-label-opposite` moves each event's label to the opposite side of the center line in `.vertical-alt` layouts. Rather than appearing above the card content in normal flow, the label floats beside the center line on the other side from its card. Pair with `.tl-dot-center` for consistent vertical alignment between the label and dot.
+
+::: {.timeline .vertical-alt .tl-label-opposite .tl-dot-center}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users.
+:::
+::: {.event data-label="2022" .tl-card}
+**Major Update**
+
+Core engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical-alt .tl-label-opposite .tl-dot-center}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+:::
+:::
+```
+
+Only applies to `.vertical-alt`. The label is positioned with `left: calc(100% + 30px)` / `right: calc(100% + 30px)`, anchoring it just past the center line regardless of card width.
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.vertical-alt.tl-label-opposite .event::before {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.timeline.vertical-alt.tl-label-opposite .event:nth-child(odd)::before {
+  left: calc(100% + 30px + var(--tl-dot-size) * 3);
+  right: auto;
+  text-align: left;
+}
+
+.timeline.vertical-alt.tl-label-opposite .event:nth-child(even)::before {
+  right: calc(100% + 30px + var(--tl-dot-size) * 3);
+  left: auto;
+  text-align: right;
+}
+```
+
+</details>
+
+---
+
+## Pill shape
+
+`.tl-pill` gives each `.vertical-alt` event a pill shape by rounding its inward-facing edge so the card curves toward the center line. Combine with `.tl-label-opposite` and `.tl-dot-center` for the classic alternating pill timeline look.
+
+::: {.timeline .vertical-alt .tl-pill .tl-label-opposite .tl-dot-center}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users.
+:::
+::: {.event data-label="2022" .tl-card}
+**Major Update**
+
+Core engine rewrite.
+:::
+:::
+
+```markdown
+::: {.timeline .vertical-alt .tl-pill .tl-label-opposite .tl-dot-center}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+:::
+:::
+```
+
+Only applies to `.vertical-alt`. Left-side events (odd) get `border-radius: 0 500px 500px 0`; right-side events (even) get `border-radius: 500px 0 0 500px`.
+
+<details>
+<summary>CSS source</summary>
+
+```css
+.timeline.vertical-alt.tl-pill .event:nth-child(odd) {
+  border-radius: 0 500px 500px 0;
+}
+
+.timeline.vertical-alt.tl-pill .event:nth-child(even) {
+  border-radius: 500px 0 0 500px;
+}
+```
+
+</details>
+
+---
+
 ## User-defined classes
 
 For anything not covered by the built-in modifier classes, write your own CSS class and apply it to the event. The stable selectors to target are:
@@ -717,6 +939,99 @@ First patch.
 **Public launch**
 :::
 ```
+
+### Technique: speech-bubble arrows on cards
+
+To add a speech-bubble arrow to `.tl-card` events pointing toward the center line, use `p:first-child::after`. This is a deliberate workaround: `.event::before` and `.event::after` are already owned by the framework for the label and dot, so the arrow must live on a child element instead.
+
+The arrow is a zero-size CSS triangle made entirely from borders. `position: relative` on the `<p>` lets the absolute-positioned `::after` escape the text flow and sit at the card edge.
+
+<style>
+.ex-bubble.vertical-alt .event.tl-card > p:first-child { position: relative; }
+.ex-bubble.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--tl-color-card-bg, #ffffff);
+}
+.ex-bubble.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid var(--tl-color-card-bg, #ffffff);
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .ex-bubble}
+::: {.event data-label="2020" .tl-card}
+**Project Started**
+
+Initial concept and planning phase.
+:::
+::: {.event data-label="2021" .tl-card}
+**First Release**
+
+Version 1.0 ships to early users.
+:::
+::: {.event data-label="2022" .tl-card}
+**Major Update**
+
+Core engine rewrite.
+:::
+:::
+
+```css
+/* Anchor the first paragraph so the arrow can be positioned */
+.my-timeline .event.tl-card > p:first-child {
+  position: relative;
+}
+
+/* Arrow on left-side cards (odd) pointing right toward center */
+.my-timeline.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 14px); /* 1rem = card padding-right; 14px ≈ arrow width */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid var(--tl-color-card-bg, #ffffff);
+}
+
+/* Arrow on right-side cards (even) pointing left toward center */
+.my-timeline.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 10px solid var(--tl-color-card-bg, #ffffff);
+}
+```
+
+The offset `calc(-1rem - 14px)` is derived from the card's `padding-right` (`1rem`) plus the arrow's border width (`~14px`), placing the arrow's base flush with the card edge. Use `var(--tl-color-card-bg, #ffffff)` for the border color so the arrow automatically matches if you change the card background.
+
+**DOM assumption:** the arrow appears on the first `<p>` child of the card. If your first child element is something other than a paragraph — a heading, a div, or no content at all — the arrow will either be missing or misplaced. Adjust the selector (`h2:first-child`, `> *:first-child`, etc.) to match your actual content structure.
+
+See [Flag Timeline](gallery/flag-timeline.html) and [Material Timeline](gallery/material-timeline.html) for full worked examples.
+
+---
 
 ### brand.yml integration
 

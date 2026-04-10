@@ -1,0 +1,119 @@
+---
+title: "Dark Activity Feed"
+format:
+  html:
+    theme: darkly
+    highlight-style: arrow-dark
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+body {
+  background: #1e1e2f;
+}
+
+.ex-dark-feed {
+  background: #1e1e2f;
+  border-radius: 12px;
+  padding: 2rem;
+
+  --tl-color-line: #27293d;
+  --tl-line-width: 4px;
+  --tl-color-card-bg: #27293d;
+  --tl-dot-icon-color: white;
+}
+
+/* Style ::before as a colored badge (label text becomes the badge name) */
+.ex-dark-feed.vertical.tl-label-badge .event.tl-card::before {
+  margin-bottom: 0.75rem;
+}
+
+/* Body text */
+.ex-dark-feed .event p {
+  font-size: 0.875rem;
+  opacity: 0.8;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Timestamp */
+.ex-dark-feed .tl-time {
+  display: block;
+  font-style: italic;
+  opacity: 0.4;
+  font-size: 0.7rem;
+  margin-top: 0.75rem;
+}
+</style>
+
+::: {.timeline .vertical .tl-label-badge .ex-dark-feed}
+::: {.event data-label="Primary" data-dot="😉" .tl-card style="--tl-color-accent: #1d8cf8; --tl-color-dot-bg: #1d8cf8;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[1 Hour Ago]{.tl-time}
+:::
+::: {.event data-label="Danger" data-dot="😍" .tl-card style="--tl-color-accent: #fd5d93; --tl-color-dot-bg: #fd5d93;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[2 Hours Ago]{.tl-time}
+:::
+::: {.event data-label="Success" data-dot="😂" .tl-card style="--tl-color-accent: #00bf9a; --tl-color-dot-bg: #00bf9a;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[6 Hours Ago]{.tl-time}
+:::
+::: {.event data-label="Warning" data-dot="😬" .tl-card style="--tl-color-accent: #ff8d72; --tl-color-dot-bg: #ff8d72;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[1 Day Ago]{.tl-time}
+:::
+::: {.event data-label="Secondary" data-dot="😅" .tl-card style="--tl-color-accent: #4f537b; --tl-color-dot-bg: #4f537b;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[3 Days Ago]{.tl-time}
+:::
+::: {.event data-label="Info" data-dot="😀" .tl-card style="--tl-color-accent: #11cdef; --tl-color-dot-bg: #11cdef;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam necessitatibus numquam earum ipsa fugiat veniam suscipit.
+
+[4 Days Ago]{.tl-time}
+:::
+:::
+
+`.vertical` with `.tl-card` and `.tl-label-badge` on a dark container. The badge and dot color are both driven by `--tl-color-accent` per event — a single property threads the accent color through `--tl-color-label` and `--tl-color-dot` at once. `--tl-color-dot-bg` is set separately to make the dot solid. `--tl-dot-icon-color: white` on the container keeps emoji visible on colored dot backgrounds.
+
+````markdown
+<style>
+.ex-dark-feed {
+  background: #1e1e2f;
+  border-radius: 12px;
+  padding: 2rem;
+
+  --tl-color-line: #27293d;
+  --tl-line-width: 4px;
+  --tl-color-card-bg: #27293d;
+  --tl-dot-icon-color: white;
+}
+
+.ex-dark-feed .tl-time {
+  display: block;
+  font-style: italic;
+  opacity: 0.4;
+  font-size: 0.7rem;
+  margin-top: 0.75rem;
+}
+</style>
+
+::: {.timeline .vertical .tl-label-badge .ex-dark-feed}
+::: {.event data-label="Primary" data-dot="😉" .tl-card style="--tl-color-accent: #1d8cf8; --tl-color-dot-bg: #1d8cf8;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+[1 Hour Ago]{.tl-time}
+:::
+::: {.event data-label="Danger" data-dot="😍" .tl-card style="--tl-color-accent: #fd5d93; --tl-color-dot-bg: #fd5d93;"}
+Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+
+[2 Hours Ago]{.tl-time}
+:::
+:::
+````

@@ -21,7 +21,7 @@
         j++;
       }
 
-      if (j - i > 1) {
+      if (j - i > 1 && label) {
         const group = document.createElement('div');
         group.classList.add('event', 'tl-group');
         if (label) group.dataset.label = label;

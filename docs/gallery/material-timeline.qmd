@@ -1,0 +1,148 @@
+---
+title: "Material Timeline"
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-mat {
+  --tl-color-line:   #C5CAE9;
+  --tl-color-dot:    #3F51B5;
+  --tl-color-dot-bg: #3F51B5;
+  --tl-line-width:   5px;
+  --tl-dot-size:     1.875rem;
+}
+
+/* Suppress the label — this design shows no dates */
+.ex-mat .event::before {
+  display: none;
+}
+
+/* Light gray card with dramatic bottom shadow */
+.ex-mat .event.tl-card {
+  --tl-color-card-bg: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
+}
+
+/* Anchor for the arrow */
+.ex-mat .event.tl-card > p:first-child {
+  position: relative;
+  font-weight: 600;
+}
+
+/* Arrow on left-side cards pointing right toward center */
+.ex-mat.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #f5f5f5;
+}
+
+/* Arrow on right-side cards pointing left toward center */
+.ex-mat.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 14px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid #f5f5f5;
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .ex-mat}
+::: {.event .tl-card}
+**Founding**
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor.
+:::
+::: {.event .tl-card}
+**Growth & Expansion**
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor.
+:::
+::: {.event .tl-card}
+**Major Achievements**
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor.
+:::
+::: {.event .tl-card}
+**Recent Milestones**
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime ipsa ratione omnis alias cupiditate saepe atque totam aperiam sed nulla voluptatem recusandae dolor.
+:::
+:::
+
+`.vertical-alt` with `.tl-dot-center`. The original design shows no dates, so `::before` is suppressed with `display: none`. The thick indigo line and large solid dot use CSS variable overrides. The dramatic shadow (`0 20px 25px -15px`) gives a strong depth effect. Speech-bubble arrows use `p:first-child::after`.
+
+````markdown
+<style>
+.ex-mat {
+  --tl-color-line:   #C5CAE9;
+  --tl-color-dot:    #3F51B5;
+  --tl-color-dot-bg: #3F51B5;
+  --tl-line-width:   5px;
+  --tl-dot-size:     1.875rem;
+}
+
+.ex-mat .event::before {
+  display: none;
+}
+
+.ex-mat .event.tl-card {
+  --tl-color-card-bg: #f5f5f5;
+  border-radius: 4px;
+  box-shadow: 0 20px 25px -15px rgba(0, 0, 0, 0.3);
+}
+
+.ex-mat .event.tl-card > p:first-child {
+  position: relative;
+  font-weight: 600;
+}
+
+.ex-mat.vertical-alt .event:nth-child(odd).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  right: calc(-1rem - 14px);
+  top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 15px solid #f5f5f5;
+}
+
+.ex-mat.vertical-alt .event:nth-child(even).tl-card > p:first-child::after {
+  content: '';
+  position: absolute;
+  left: calc(-1rem - 14px);
+  top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right: 15px solid #f5f5f5;
+}
+</style>
+
+::: {.timeline .vertical-alt .tl-dot-center .ex-mat}
+::: {.event .tl-card}
+**Founding**
+
+Lorem ipsum dolor sit amet.
+:::
+::: {.event .tl-card}
+**Growth & Expansion**
+
+Lorem ipsum dolor sit amet.
+:::
+:::
+````
