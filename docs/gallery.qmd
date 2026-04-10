@@ -55,6 +55,8 @@ toc: false
 }
 </style>
 
+Have a timeline you're proud of? [Contributions are welcome](https://github.com/EmilHvitfeldt/quarto-timeline) — open an issue or PR to add your example to the gallery.
+
 ::: gallery-grid
 
 ::: gallery-card

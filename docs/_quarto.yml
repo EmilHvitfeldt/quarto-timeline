@@ -29,6 +29,10 @@ website:
             href: customization.qmd
           - text: "Theming"
             href: theming.qmd
+    right:
+      - icon: github
+        href: https://github.com/EmilHvitfeldt/quarto-timeline
+        aria-label: GitHub
 
 format:
   html:
