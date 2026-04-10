@@ -29,6 +29,8 @@ Customization works at two levels: classes on `.timeline` that affect the whole 
 | `.tl-card` | Card background and border on the event |
 | `data-dot="★"` | Character inside the dot |
 
+> **Note:** Labels set via `data-label` use `white-space: nowrap` and will not wrap. Very long label strings can overflow their container on narrow viewports — keep labels short or use the `.tl-label-banner` / `.tl-label-badge` variants which are also nowrap but visually contained.
+
 ## CSS variables
 
 All visual properties are exposed as CSS custom properties on `.timeline`. Override them inline on a single timeline or document-wide in a stylesheet.
@@ -510,7 +512,9 @@ Infrastructure overhaul.
 ::: {.event data-label="Deploy" data-dot="▲"}
 ```
 
-Works with any single character or number. The dot automatically enlarges to `2rem` when `data-dot` is set. Override `--tl-dot-size` on the event or timeline if you need a different size.
+Works with any single character or symbol. The dot automatically enlarges to `2rem` when `data-dot` is set. Override `--tl-dot-size` on the event or timeline if you need a different size.
+
+> **Note:** The icon is sized at 60% of `--tl-dot-size` with `overflow: hidden`. Multi-character strings will be clipped — keep `data-dot` values to a single character or emoji.
 
 Use `--tl-dot-icon-color` to control the icon/text color inside the dot independently of the dot border or the event's text color. This is particularly useful when the dot has a solid colored background:
 
@@ -1044,3 +1048,26 @@ If your document uses a Quarto brand file, you can reference brand colors throug
   --tl-color-label: #{$brand-primary};
 }
 ```
+
+---
+
+## Accessibility
+
+The extension renders as plain `<div>` elements with no ARIA roles or landmark markup added. Timelines are treated as visual content, not interactive components.
+
+**Recommendations:**
+
+- Wrap the timeline in a `<figure>` with a `<figcaption>` to give screen readers a label:
+
+  ```markdown
+  <figure aria-label="Project history">
+  ::: {.timeline .vertical}
+  ...
+  :::
+  <figcaption>Project history from 2020 to 2024.</figcaption>
+  </figure>
+  ```
+
+- Use descriptive content inside each `.event` — the `data-label` value is rendered as visual text via a CSS `::before` pseudo-element and is **not** read as a heading by screen readers. If the label is meaningful for navigation, repeat it as a visible heading inside the event content.
+
+- Fragment timelines (RevealJS) rely on Reveal.js keyboard navigation. No additional keyboard handling is added by this extension.

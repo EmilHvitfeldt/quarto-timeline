@@ -41,16 +41,21 @@
 
 
   /* ── Phase 6: Fragment behavior ───────────────────────────────
-     Two pan modes for horizontal timelines with many events:
+     Two pan modes for timelines with more events than fit on a slide.
+     Works with all layout variants (horizontal, vertical, snake, etc.).
 
      .fragment-slide   — centers the last visible event in the viewport
-     .fragment-conveyor — steps left so the last visible event's left
-                          edge aligns with the container's left edge
+     .fragment-conveyor — pans just enough so the last visible event's
+                          trailing edge is in view (steps only when
+                          the next event would otherwise be clipped)
 
      In non-revealjs HTML, all .fragment classes are stripped so
      every event shows statically.
   ──────────────────────────────────────────────────────────────── */
 
+  // Returns the last event that is either non-fragment or already visible.
+  // Falls back to the first event if none qualify (e.g. before any fragment
+  // has been revealed on the current slide).
   function getLastVisibleEvent(timeline) {
     const events = Array.from(timeline.querySelectorAll(':scope > .event'));
     let last = null;
