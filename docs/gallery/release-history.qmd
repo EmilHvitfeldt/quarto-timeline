@@ -1,0 +1,55 @@
+---
+title: "Release History"
+---
+
+[← Gallery](../gallery.html)
+
+::: {.timeline .tl-label-badge}
+::: {.event data-label="v1.0" style="--tl-color-accent: #6366f1;"}
+**Initial Release**
+Core timeline layouts ship: horizontal, vertical, and vertical-alt.
+:::
+::: {.event data-label="v1.5" style="--tl-color-accent: #0891b2;"}
+**Snake Layout**
+New serpentine path layout added for multi-row roadmaps.
+:::
+::: {.event data-label="v2.0" style="--tl-color-accent: #16a34a;"}
+**Modifier Classes**
+`.tl-card`, `.tl-label-banner`, `.tl-label-badge`, and dot shape classes introduced.
+:::
+::: {.event data-label="v2.5" style="--tl-color-accent: #d97706;"}
+**Fragment Pan Modes**
+Slide and conveyor panning for RevealJS presentations.
+:::
+::: {.event data-label="v3.0" style="--tl-color-accent: #dc2626;"}
+**Stable API**
+Dark mode defaults, grouped events, and empty event support. Extension declared stable.
+:::
+:::
+
+Horizontal layout with `.tl-label-badge` and per-event `--tl-color-accent`. The badge and dot both inherit the accent color automatically.
+
+````markdown
+::: {.timeline .tl-label-badge}
+::: {.event data-label="v1.0" style="--tl-color-accent: #6366f1;"}
+**Initial Release**
+Core timeline layouts ship: horizontal, vertical, and vertical-alt.
+:::
+::: {.event data-label="v1.5" style="--tl-color-accent: #0891b2;"}
+**Snake Layout**
+New serpentine path layout added for multi-row roadmaps.
+:::
+::: {.event data-label="v2.0" style="--tl-color-accent: #16a34a;"}
+**Modifier Classes**
+`.tl-card`, `.tl-label-banner`, `.tl-label-badge`, and dot shape classes introduced.
+:::
+::: {.event data-label="v2.5" style="--tl-color-accent: #d97706;"}
+**Fragment Pan Modes**
+Slide and conveyor panning for RevealJS presentations.
+:::
+::: {.event data-label="v3.0" style="--tl-color-accent: #dc2626;"}
+**Stable API**
+Dark mode defaults, grouped events, and empty event support. Extension declared stable.
+:::
+:::
+````

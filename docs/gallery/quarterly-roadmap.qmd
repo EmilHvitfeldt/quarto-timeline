@@ -1,0 +1,75 @@
+---
+title: "Quarterly Roadmap"
+format:
+  html:
+    theme: darkly
+    highlight-style: arrow-dark
+---
+
+[← Gallery](../gallery.html)
+
+<style>
+.ex-qr {
+  background: #1e293b;
+  border-radius: 12px;
+  --tl-dot-size: 1.25rem;
+  --tl-line-width: 5px;
+}
+.ex-qr::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #8b5cf6 33%, #10b981 66%, #f43f5e 100%);
+}
+</style>
+
+::: {.timeline .ex-qr}
+::: {.event data-label="Q1" style="--tl-color-accent: #f59e0b; --tl-color-dot-bg: #f59e0b;"}
+**Planning**
+Stakeholder interviews, competitive analysis, and requirements sign-off.
+:::
+::: {.event data-label="Q2" style="--tl-color-accent: #8b5cf6; --tl-color-dot-bg: #8b5cf6;"}
+**Design**
+Wireframes, usability testing, and design system alignment.
+:::
+::: {.event data-label="Q3" style="--tl-color-accent: #10b981; --tl-color-dot-bg: #10b981;"}
+**Build**
+Feature development, integration testing, and staged beta rollout.
+:::
+::: {.event data-label="Q4" style="--tl-color-accent: #f43f5e; --tl-color-dot-bg: #f43f5e;"}
+**Launch**
+Public release, monitoring, and post-launch retrospective.
+:::
+:::
+
+Dark-themed horizontal timeline with a gradient connecting line and solid filled dots. Uses `theme: darkly` so the page itself is dark and text is light by default — no manual color overrides needed on events. The gradient line (`#f59e0b → #8b5cf6 → #10b981 → #f43f5e`) overrides `.timeline::before` directly. Each dot is filled solid by setting `--tl-color-dot-bg` to match `--tl-color-accent`.
+
+````markdown
+<style>
+.ex-qr {
+  background: #1e293b;
+  border-radius: 12px;
+  --tl-dot-size: 1.25rem;
+  --tl-line-width: 5px;
+}
+.ex-qr::before {
+  background: linear-gradient(90deg, #f59e0b 0%, #8b5cf6 33%, #10b981 66%, #f43f5e 100%);
+}
+</style>
+
+::: {.timeline .ex-qr}
+::: {.event data-label="Q1" style="--tl-color-accent: #f59e0b; --tl-color-dot-bg: #f59e0b;"}
+**Planning**
+Stakeholder interviews, competitive analysis, and requirements sign-off.
+:::
+::: {.event data-label="Q2" style="--tl-color-accent: #8b5cf6; --tl-color-dot-bg: #8b5cf6;"}
+**Design**
+Wireframes, usability testing, and design system alignment.
+:::
+::: {.event data-label="Q3" style="--tl-color-accent: #10b981; --tl-color-dot-bg: #10b981;"}
+**Build**
+Feature development, integration testing, and staged beta rollout.
+:::
+::: {.event data-label="Q4" style="--tl-color-accent: #f43f5e; --tl-color-dot-bg: #f43f5e;"}
+**Launch**
+Public release, monitoring, and post-launch retrospective.
+:::
+:::
+````
