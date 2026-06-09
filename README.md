@@ -2,6 +2,8 @@
 
 A Quarto extension for adding styled timelines to HTML documents and revealjs presentations.
 
+![](timeline.webp)
+
 ## Installation
 
 ```bash
